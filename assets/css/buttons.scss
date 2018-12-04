@@ -1,0 +1,53 @@
+@import 'variables.scss';
+
+button.btn {
+   border-radius: $border-radius;
+   font-size: 0.9rem;
+   color: white;
+}
+
+button.btn.btn-sm {
+   font-weight: 300;
+   font-size: 0.8rem;
+}
+
+button.btn-primary, button.btn-primary:disabled {
+   background-color: $fuze-color-blue;
+   border-color: $fuze-color-blue;
+}
+button.btn-primary:hover{
+   background-color: darken($fuze-color-blue, 10%);
+   border-color: darken($fuze-color-blue, 10%);
+}
+button.btn-primary:active{
+   background-color: darken($fuze-color-blue, 15%);
+   border-color: darken($fuze-color-blue, 15%);
+}
+
+/* BTN-edit */
+button.btn-edit, button.btn-edit:disabled {
+   background-color: $fuze-color-purple;
+   border-color: $fuze-color-purple;
+}
+button.btn-edit:hover{
+   background-color: darken($fuze-color-purple, 10%);
+   border-color: darken($fuze-color-purple, 10%);
+}
+button.btn-edit:active{
+   background-color: darken($fuze-color-purple, 15%);
+   border-color: darken($fuze-color-purple, 15%);
+}
+
+/* BTN-delete */
+button.btn-delete, button.btn-delete:disabled {
+   background-color: $fuze-color-red;
+   border-color: $fuze-color-red;
+}
+button.btn-delete:hover{
+   background-color: darken($fuze-color-red, 10%);
+   border-color: darken($fuze-color-red, 10%);
+}
+button.btn-delete:active{
+   background-color: darken($fuze-color-red, 10%);
+   border-color: darken($fuze-color-red, 10%);
+}

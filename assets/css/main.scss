@@ -1,0 +1,173 @@
+@import 'buttons.scss';
+@import 'inputs.scss';
+@import 'typography.scss';
+@import 'navigation.scss';
+@import 'tables.scss';
+@import 'misc.scss';
+@import './components/loading.scss';
+@import './components/toaster.scss';
+@import './partials/header.scss';
+@import './partials/footer.scss';
+
+html{
+   overflow: hidden;
+}
+
+html,
+body {
+   margin: 0;
+   height: 100%;
+   min-height: 100%;
+}
+body {
+   display: flex;
+   flex-direction: column;
+   font-family: 'Roboto', sans-serif !important;
+}
+
+header,
+footer {
+   flex: none;
+}
+
+body main {
+   overflow: auto;
+   overflow-scrolling: touch;
+   flex: auto;
+}
+
+main {
+   flex-grow: 1;
+
+   /* Full height */
+   height: 100%;
+
+   &.fuze-address-book-login-sign-in-page{
+      /* The image used */
+      background-image: url('../../assets/images/bg_full_landing_page.png');
+
+      /* Full height */
+      height: 100%;
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+   }
+
+   .main-container{
+      .inner{
+         padding: 20px 50px;
+      }
+   }
+}
+
+#logo{
+   background: url(../images/logo.svg) no-repeat top left;
+   background-size: contain;
+   height: 32px;
+   margin-left: 1rem;
+   margin-top: 0.8rem;
+}
+
+#fuze-address-book-nav-mobile {
+   display: none;
+}
+
+/*
+MEDIA QUERIES
+*/
+
+@media (max-width: 767.98px) {
+   nav.main-navigation{ display: none; }
+
+   main {
+      .main-container{
+         #fuze-address-book-nav-mobile{
+            display: block;
+         }
+         .inner{
+            padding: 10px 20px;
+         }
+      }
+   }
+}
+
+[data-ui-view="main"]{
+   display: flex;
+   min-height: 100%;
+}
+
+[data-ui-view="main"] nav{
+   background-color: $nav-background;
+   flex: 1;
+   max-width: 80px;
+}
+
+[data-ui-view="main"] .main-container{
+   flex: 5;
+}
+
+[data-ui-view="main"].ng-enter, [data-ui-view="main"].ng-leave {
+   /*position: absolute;
+   left: 0;
+   right: 0;
+   -webkit-transition:all .5s ease-in-out;
+   -moz-transition:all .5s ease-in-out;
+   -o-transition:all .5s ease-in-out;*/
+   transition:all .5s ease-in-out;
+}
+
+[data-ui-view="main"].ng-enter {
+   opacity: 0;
+   /*-webkit-transform:scale3d(0.5, 0.5, 0.5);
+   -moz-transform:scale3d(0.5, 0.5, 0.5);
+   transform:scale3d(0.5, 0.5, 0.5);*/
+}
+
+[data-ui-view="main"].ng-enter-active {
+   opacity: 1;
+   /*-webkit-transform:scale3d(1, 1, 1);
+   -moz-transform:scale3d(1, 1, 1);
+   transform:scale3d(1, 1, 1);*/
+}
+
+[data-ui-view="main"].ng-leave {
+   opacity: 1;
+   /*padding-left: 0px;*/
+   /*-webkit-transform:translate3d(0, 0, 0);
+   -moz-transform:translate3d(0, 0, 0);
+   transform:translate3d(0, 0, 0);*/
+}
+
+[data-ui-view="main"].ng-leave-active {
+   opacity: 0;
+   /*padding-left: 100px;*/
+   /*-webkit-transform:translate3d(100px, 0, 0);
+   -moz-transform:translate3d(100px, 0, 0);
+   transform:translate3d(100px, 0, 0);*/
+}
+
+
+/*
+BOOTSTRAP
+Override modal styles: there's seems to be an issue regarding this matter
+*/
+.fade.in {
+   opacity: 1;
+}
+
+.modal.in .modal-dialog {
+   -webkit-transform: translate(0, 0);
+   -ms-transform: translate(0, 0);
+   -o-transform: translate(0, 0);
+   transform: translate(0, 0);
+}
+
+.modal-backdrop.in {
+   opacity: 0.5;
+}
+
+.open>.dropdown-menu{
+   display: block;
+}

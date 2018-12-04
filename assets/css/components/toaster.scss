@@ -1,0 +1,7 @@
+@import '../variables.scss';
+
+#toast-container > div {
+   box-shadow: 0 0 12px darken($fuze-color-gray, 10%);
+   opacity: 0.9;
+}
+#toast-container .toast-message { font-size: 0.8rem; }

@@ -1,0 +1,23 @@
+@import '../../../assets/css/variables.scss';
+
+#fuze-address-book-groups-page {
+   height: 100%;
+   position: relative;
+
+   .search-form {
+      margin-top: 1rem;
+   }
+
+   table{
+      .col-number { width: 40px; }
+      .col-picture { width: 80px; }
+      .col-actions { width: 140px; }
+
+      .thumbnail-picture{
+         height: 3rem;
+         width: 3rem;
+         border-radius: 50%;
+         border: 2px solid $fuze-color-blue;
+      }
+   }
+}

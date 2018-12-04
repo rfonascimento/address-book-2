@@ -1,0 +1,32 @@
+{
+  "name": "fuze-address-book",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
+    "@uirouter/angularjs": "^1.0.20",
+    "angular": "^1.7.5",
+    "angular-animate": "^1.7.5",
+    "angular-cookies": "^1.7.5",
+    "angular-toastr": "^2.1.1",
+    "angular-ui-bootstrap": "^2.5.6",
+    "angular-ui-router": "^1.0.20",
+    "angularjs": "0.0.1",
+    "angularjs-toaster": "^2.2.0",
+    "bootstrap-css-only": "^4.1.1",
+    "font-awesome": "^4.7.0",
+    "toaster": "^0.1.2",
+    "views": "^1.0.2"
+  },
+  "devDependencies": {
+    "sass": "^1.15.1",
+    "typescript": "^3.2.1"
+  }
+}
