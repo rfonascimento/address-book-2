@@ -24,6 +24,7 @@ export function controller(){
       const myscope = $scope[key] = (($scope)=>{return{
          loadInProgress: false,
          data: [],
+         dependenciesResolved: false,
          searchQuery: {},
          searchQueryBy: '$',
          navigation:{
@@ -40,7 +41,10 @@ export function controller(){
             .then(()=>{ return daoContactsService.getExtended(zpriv.getContext()); })
             .then((response)=>{ return myscope.contactsList = response.data; })
             .then(()=>{ return myscope.actionGetData()})
-            .finally(()=>{ myscope.loadInProgress = false; })
+            .finally(()=>{
+               myscope.loadInProgress = false;
+               myscope.dependenciesResolved = true;
+            });
       })();
 
       myscope.actionGetData = ()=>{

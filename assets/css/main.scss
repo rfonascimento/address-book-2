@@ -36,6 +36,13 @@ body main {
    flex: auto;
 }
 
+a{
+   color: $fuze-color-purple
+}
+a:hover{
+   color: darken($fuze-color-purple, 20%);
+}
+
 main {
    flex-grow: 1;
 

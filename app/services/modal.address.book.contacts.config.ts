@@ -4,6 +4,7 @@ export default function modalAddressBookContactsConfig(){
 
       const ctrl = ['$scope'
          , '$q'
+         , '$state'
          , '$stateParams'
          , 'daoContactsService'
          , 'daoGroupsService'
@@ -11,6 +12,7 @@ export default function modalAddressBookContactsConfig(){
          , 'toaster'
       , ($scope:$scope
          , $q:$q
+         , $state:$state
          , $stateParams:$stateParams
          , daoContactsService: object
          , daoGroupsService: object
@@ -61,6 +63,11 @@ export default function modalAddressBookContactsConfig(){
 
          myscope.getGroups = ()=>{
            return myscope.groupsList;
+         };
+
+         myscope.createNewContact = ()=>{
+            $scope.$dismiss();
+            $state.go('root.addressBook.groups');
          };
 
          zpriv.getContext = ()=>{

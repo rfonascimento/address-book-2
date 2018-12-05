@@ -23,6 +23,7 @@ export function controller(){
       const zpriv = {};
       const myscope = $scope[key] = (($scope)=>{return{
          loadInProgress: false,
+         dependenciesResolved: false,
          data: [],
          searchQuery: {},
          searchQueryBy: '$',
@@ -40,7 +41,10 @@ export function controller(){
             .then(()=>{ return daoGroupsService.getExtended(zpriv.getContext()) })
             .then((response)=>{ return myscope.groupsList = response.data; })
             .then(()=>{ return myscope.actionGetData()})
-            .finally(()=>{ myscope.loadInProgress = false; })
+            .finally(()=>{
+               myscope.loadInProgress = false;
+               myscope.dependenciesResolved = true;
+            })
       })();
 
       myscope.actionGetData = ()=>{

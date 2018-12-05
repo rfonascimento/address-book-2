@@ -5,6 +5,9 @@
          <h5 class="modal-title" data-ng-if="myController.isInEdition">Edit contact</h5>
       </div>
       <div class="modal-body">
+         <div class="alert alert-danger" role="alert" data-ng-if="myController.getGroups().length == 0">
+            <i class="fas fa-exclamation-triangle"></i> It's not possible do add a new contact. Please <a href data-ng-click="myController.createNewContact()">create a contact</a> group to associate the contact.
+         </div>
          <div class="form-group">
             <label for="fuze-address-book-contact-config-name">Name</label>
             <input type="text" class="form-control" id="fuze-address-book-contact-config-name" placeholder="Insert contact name" data-ng-model="myController.data.name" data-ng-disabled="myController.isInEdition" required>
