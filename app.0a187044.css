@@ -43,6 +43,19 @@ header #fuze-address-book-header-candidate-dropdown {
 
 .text--create-new-account a:hover {
   color: white;
+}
+
+.slogan {
+  padding: 2rem;
+}
+
+.slogan h3 {
+  font-size: 3rem;
+}
+
+.slogan h3, .slogan h4 {
+  color: white;
+  font-weight: 300;
 }.main-container.register {
   padding: 4em;
 }
