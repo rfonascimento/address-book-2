@@ -1,0 +1,1 @@
+{"id":"app/views/home/home.html","dependencies":[],"generated":{"html":"this is a view {{ persona.name }}\n<a ui-sref=\"root.login({contactId: id})\">View Contact</a>"},"hash":"abc1763040c7515fa993f36722b18758","cacheData":{}}

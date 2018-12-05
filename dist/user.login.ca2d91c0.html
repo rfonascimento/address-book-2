@@ -1,0 +1,45 @@
+<div class="main-container login" data-fuze-address-book-loading-blocker="myController.loadInProgress">
+   <div class="row full-height">
+      <div class="col"></div>
+      <div class="col-md-3">
+         <form name="myController.form" novalidate="">
+            <div class="form-group">
+               <input type="text" class="form-control" id="fuze-address-book-user-username" aria-describedby="username" placeholder="username" data-ng-model="myController.data.username" required="">
+            </div>
+            <div class="form-group">
+               <input type="password" class="form-control" id="fuze-address-book-user-password" aria-describedby="password" placeholder="password" data-ng-model="myController.data.password" required="">
+            </div>
+            <button type="submit" class="btn btn-primary full-width" data-ng-click="myController.actionLogin(myController.data)" data-ng-disabled="myController.form.$invalid">Login</button>
+         </form>
+         <p class="text-center text-white text--create-new-account">Not registered? Create an <a data-ui-sref="root.user.register">account</a></p>
+      </div>
+      <div class="col"></div>
+   </div>
+</div>
+<!--<div class="row">
+   <div class="col">
+   </div>
+   <div class="col-5">
+      <form>
+         <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+         </div>
+         <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+         </div>
+         <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+         </div>
+         <button type="submit" class="btn btn-primary">Submit</button>
+         <p>Not registered? Create an <a ui-sref="root.user.register()">account</a></p>
+         <a ui-sref="root.user.login({contactId: id})">ddddd</a>
+      </form>
+   </div>
+   <div class="col">
+
+   </div>
+</div>-->

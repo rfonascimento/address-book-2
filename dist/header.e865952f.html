@@ -1,0 +1,19 @@
+<div>
+   <div class="row">
+      <div class="col-9">
+         <div id="logo"></div>
+      </div>
+      <div class="col-3">
+         <span data-uib-dropdown="" data-ng-if="myController.isUserLoggedIn()">
+            <a href="" id="fuze-address-book-header-candidate-dropdown" data-uib-dropdown-toggle="">
+              {{ myController.candidate }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu="" aria-labelledby="simple-dropdown">
+              <li>
+                <a href="" data-ng-click="myController.actionLogout()">Logout</a>
+              </li>
+            </ul>
+          </span>
+      </div>
+   </div>
+</div>
