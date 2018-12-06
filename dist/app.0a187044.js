@@ -185,7 +185,9 @@ module.hot.accept(reloadCSS);
 },{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/partials/header/header.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 require("./header.scss");
 
@@ -218,7 +220,9 @@ exports.controller = controller;
 },{"./header.scss":"app/views/partials/header/header.scss"}],"app/views/home/home.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function controller() {
   return ['$scope', 'daoAddressBook', function ($scope, daoAddressBook) {
@@ -233,7 +237,9 @@ exports.controller = controller;
 },{}],"app/views/partials/footer/footer.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function controller() {
   return ['$scope', '$state', '$stateParams', function ($scope, $state, $stateParams) {}]; //
@@ -248,7 +254,9 @@ module.hot.accept(reloadCSS);
 },{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/user.login/index.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 require("./index.scss");
 
@@ -290,7 +298,7 @@ function controller() {
             });
           }
         }
-      })["catch"](function (error) {})["finally"](function () {
+      }).catch(function (error) {}).finally(function () {
         myscope.loadInProgress = false;
       });
     };
@@ -306,7 +314,9 @@ module.hot.accept(reloadCSS);
 },{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/user.register/index.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 require("./index.scss");
 
@@ -334,7 +344,7 @@ function controller() {
         } else {
           toaster.error("Account creation falied", "Please try again or contact support");
         }
-      })["catch"](function (error) {})["finally"](function () {
+      }).catch(function (error) {}).finally(function () {
         myscope.loadInProgress = false;
       });
     };
@@ -345,7 +355,9 @@ exports.controller = controller;
 },{"./index.scss":"app/views/user.register/index.scss"}],"app/views/partials/navigation/navigation.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function controller() {
   return ['$scope', '$state', '$stateParams', function ($scope, $state, $stateParams) {
@@ -371,7 +383,9 @@ module.hot.accept(reloadCSS);
 },{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/addressBook.contacts/index.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 require("./index.scss");
 
@@ -408,7 +422,7 @@ function controller() {
         return myscope.groupsList = response.data;
       }).then(function () {
         return myscope.actionGetData();
-      })["finally"](function () {
+      }).finally(function () {
         myscope.loadInProgress = false;
         myscope.dependenciesResolved = true;
       });
@@ -429,7 +443,7 @@ function controller() {
         } else {
           toaster.error("Error", "It was not possible retrieve contact list at this point. Please try again");
         }
-      })["finally"](function () {
+      }).finally(function () {
         myscope.loadInProgress = false;
       });
     };
@@ -498,7 +512,9 @@ module.hot.accept(reloadCSS);
 },{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/addressBook.groups/index.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 require("./index.scss");
 
@@ -535,7 +551,7 @@ function controller() {
         return myscope.contactsList = response.data;
       }).then(function () {
         return myscope.actionGetData();
-      })["finally"](function () {
+      }).finally(function () {
         myscope.loadInProgress = false;
         myscope.dependenciesResolved = true;
       });
@@ -556,7 +572,7 @@ function controller() {
         } else {
           toaster.error("Error", "It was not possible retrieve groups list at this point. Please try again");
         }
-      })["finally"](function () {
+      }).finally(function () {
         myscope.loadInProgress = false;
       });
     };
@@ -619,7 +635,9 @@ exports.controller = controller;
 },{"./index.scss":"app/views/addressBook.groups/index.scss"}],"app/app-routes.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function appRoutes() {
   return ['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -712,11 +730,13 @@ function appRoutes() {
   }];
 }
 
-exports["default"] = appRoutes;
+exports.default = appRoutes;
 },{"./views/partials/header/header.html":"app/views/partials/header/header.html","./views/partials/header/header":"app/views/partials/header/header.ts","./views/home/home.html":"app/views/home/home.html","./views/home/home":"app/views/home/home.ts","./views/partials/footer/footer.html":"app/views/partials/footer/footer.html","./views/partials/footer/footer":"app/views/partials/footer/footer.ts","./views/user.login/index.html":"app/views/user.login/index.html","./views/user.login/index":"app/views/user.login/index.ts","./views/user.register/index.html":"app/views/user.register/index.html","./views/user.register/index":"app/views/user.register/index.ts","./views/partials/navigation/navigation.html":"app/views/partials/navigation/navigation.html","./views/partials/navigation/navigation":"app/views/partials/navigation/navigation.ts","./views/addressBook.contacts/index.html":"app/views/addressBook.contacts/index.html","./views/addressBook.contacts/index":"app/views/addressBook.contacts/index.ts","./views/addressBook.groups/index.html":"app/views/addressBook.groups/index.html","./views/addressBook.groups/index":"app/views/addressBook.groups/index.ts"}],"app/services/dao.address.book.service.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function daoAddressBook() {
   return ['$http', '$parse', '$stateParams', 'localStorageService', function ($http, $parse, $stateParams, localStorageService) {
@@ -751,7 +771,7 @@ function daoAddressBook() {
           success: true,
           data: ((response || {}).data || {}).value
         };
-      })["catch"](function (error) {
+      }).catch(function (error) {
         if (angular.isObject(candidate = localStorageService.getObject('fuzeAddressBookCandidateData'))) {
           return {
             success: true,
@@ -773,7 +793,7 @@ function daoAddressBook() {
           success: true,
           data: ((response || {}).data || {}).value
         };
-      })["catch"](function (error) {
+      }).catch(function (error) {
         return {
           success: false,
           error: error
@@ -785,12 +805,14 @@ function daoAddressBook() {
   }];
 }
 
-exports["default"] = daoAddressBook;
+exports.default = daoAddressBook;
 ;
 },{}],"app/services/dao.contacts.service.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function daoContacts() {
   return ['$http', '$stateParams', '$parse', 'localStorageService', function ($http, $stateParams, $parse, localStorageService) {
@@ -814,7 +836,7 @@ function daoContacts() {
           success: true,
           data: ((response || {}).data || {}).value
         };
-      })["catch"](function (error) {
+      }).catch(function (error) {
         return {
           success: false,
           error: error
@@ -832,7 +854,7 @@ function daoContacts() {
           success: true,
           data: $parse('data.value.contacts')(response)
         };
-      })["catch"](function (error) {
+      }).catch(function (error) {
         if (angular.isObject(data = localStorageService.getObject('fuzeAddressBookContactsData'))) {
           return {
             success: true,
@@ -854,7 +876,7 @@ function daoContacts() {
           success: true,
           data: ((response || {}).data || {}).value
         };
-      })["catch"](function (error) {
+      }).catch(function (error) {
         return {
           success: false,
           error: error
@@ -869,7 +891,7 @@ function daoContacts() {
           success: true,
           data: ((response || {}).data || {}).value
         };
-      })["catch"](function (error) {
+      }).catch(function (error) {
         return {
           success: false,
           error: error
@@ -879,12 +901,12 @@ function daoContacts() {
 
     dao.remove = function (context, data) {
       var url = zpriv.getUrl(context, data);
-      return $http["delete"](url, data).then(function (response) {
+      return $http.delete(url, data).then(function (response) {
         return {
           success: true,
           data: ((response || {}).data || {}).value
         };
-      })["catch"](function (error) {
+      }).catch(function (error) {
         return {
           success: false,
           error: error
@@ -896,12 +918,14 @@ function daoContacts() {
   }];
 }
 
-exports["default"] = daoContacts;
+exports.default = daoContacts;
 ;
 },{}],"app/services/dao.groups.service.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function daoGroups() {
   return ['$http', '$stateParams', '$parse', 'localStorageService', function ($http, $stateParams, $parse, localStorageService) {
@@ -925,7 +949,7 @@ function daoGroups() {
           success: true,
           data: ((response || {}).data || {}).value
         };
-      })["catch"](function (error) {
+      }).catch(function (error) {
         return {
           success: false,
           error: error
@@ -943,7 +967,7 @@ function daoGroups() {
           success: true,
           data: $parse('data.value.groups')(response)
         };
-      })["catch"](function (error) {
+      }).catch(function (error) {
         if (angular.isObject(data = localStorageService.getObject('fuzeAddressBookGroupsData'))) {
           return {
             success: true,
@@ -965,7 +989,7 @@ function daoGroups() {
           success: true,
           data: ((response || {}).data || {}).value
         };
-      })["catch"](function (error) {
+      }).catch(function (error) {
         return {
           success: false,
           error: error
@@ -980,7 +1004,7 @@ function daoGroups() {
           success: true,
           data: ((response || {}).data || {}).value
         };
-      })["catch"](function (error) {
+      }).catch(function (error) {
         return {
           success: false,
           error: error
@@ -990,12 +1014,12 @@ function daoGroups() {
 
     dao.remove = function (context, data) {
       var url = zpriv.getUrl(context, data);
-      return $http["delete"](url, data).then(function (response) {
+      return $http.delete(url, data).then(function (response) {
         return {
           success: true,
           data: ((response || {}).data || {}).value
         };
-      })["catch"](function (error) {
+      }).catch(function (error) {
         return {
           success: false,
           error: error
@@ -1007,12 +1031,14 @@ function daoGroups() {
   }];
 }
 
-exports["default"] = daoGroups;
+exports.default = daoGroups;
 ;
 },{}],"app/services/local.storage.service.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function LocalStorage() {
   return ['$window', function ($window) {
@@ -1033,12 +1059,14 @@ function LocalStorage() {
   }];
 }
 
-exports["default"] = LocalStorage;
+exports.default = LocalStorage;
 ;
 },{}],"app/services/modal.address.book.contacts.config.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function modalAddressBookContactsConfig() {
   return ['$uibModal', function ($uibModal) {
@@ -1061,7 +1089,7 @@ function modalAddressBookContactsConfig() {
           return daoGroupsService.getExtended(zpriv.getContext());
         }).then(function (response) {
           myscope.groupsList = response.data;
-        })["finally"](function () {
+        }).finally(function () {
           myscope.loadInProgress = false;
         });
       })();
@@ -1088,7 +1116,7 @@ function modalAddressBookContactsConfig() {
           } else {
             toaster.error("Error", "It was not possible to configure the contact. Please try again");
           }
-        })["finally"](function () {
+        }).finally(function () {
           myscope.loadInProgress = false;
         });
       };
@@ -1125,12 +1153,14 @@ function modalAddressBookContactsConfig() {
   }];
 }
 
-exports["default"] = modalAddressBookContactsConfig;
+exports.default = modalAddressBookContactsConfig;
 ;
 },{"./modal.address.book.contacts.config.tpl.html":"app/services/modal.address.book.contacts.config.tpl.html"}],"app/services/modal.address.book.contacts.delete.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function modalAddressBookContactsDelete() {
   return ['$uibModal', function ($uibModal) {
@@ -1154,7 +1184,7 @@ function modalAddressBookContactsDelete() {
           } else {
             toaster.error("Error", "It was not possible to delete the contact. Please try again");
           }
-        })["finally"](function () {
+        }).finally(function () {
           myscope.loadInProgress = false;
         });
       };
@@ -1182,12 +1212,14 @@ function modalAddressBookContactsDelete() {
   }];
 }
 
-exports["default"] = modalAddressBookContactsDelete;
+exports.default = modalAddressBookContactsDelete;
 ;
 },{"./modal.address.book.contacts.delete.tpl.html":"app/services/modal.address.book.contacts.delete.tpl.html"}],"app/services/modal.address.book.groups.config.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function modalAddressBookGroupsConfig() {
   return ['$uibModal', function ($uibModal) {
@@ -1214,7 +1246,7 @@ function modalAddressBookGroupsConfig() {
           if (myscope.isInCreation) {
             myscope.data.id = myscope.groupsList.length + 1;
           }
-        })["finally"](function () {
+        }).finally(function () {
           myscope.loadInProgress = false;
         });
       })();
@@ -1241,7 +1273,7 @@ function modalAddressBookGroupsConfig() {
           } else {
             toaster.error("Error", "It was not possible to configure the contact group. Please try again");
           }
-        })["finally"](function () {
+        }).finally(function () {
           myscope.loadInProgress = false;
         });
       };
@@ -1268,12 +1300,14 @@ function modalAddressBookGroupsConfig() {
   }];
 }
 
-exports["default"] = modalAddressBookGroupsConfig;
+exports.default = modalAddressBookGroupsConfig;
 ;
 },{"./modal.address.book.groups.config.tpl.html":"app/services/modal.address.book.groups.config.tpl.html"}],"app/services/modal.address.book.groups.delete.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function modalAddressBookContactsDelete() {
   return ['$uibModal', function ($uibModal) {
@@ -1297,7 +1331,7 @@ function modalAddressBookContactsDelete() {
           } else {
             toaster.error("Error", "It was not possible to delete the contact group. Please try again");
           }
-        })["finally"](function () {
+        }).finally(function () {
           myscope.loadInProgress = false;
         });
       };
@@ -1324,12 +1358,14 @@ function modalAddressBookContactsDelete() {
   }];
 }
 
-exports["default"] = modalAddressBookContactsDelete;
+exports.default = modalAddressBookContactsDelete;
 ;
 },{"./modal.address.book.groups.delete.tpl.html":"app/services/modal.address.book.groups.delete.tpl.html"}],"app/services/auth.service.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function Auth() {
   return ['$cookies', '$stateParams', function ($cookies, $stateParams) {
@@ -1352,12 +1388,14 @@ function Auth() {
   }];
 }
 
-exports["default"] = Auth;
+exports.default = Auth;
 ;
 },{}],"app/components/loading.ts":[function(require,module,exports) {
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function loadBlockerDirective() {
   return ['$parse', '$compile', function ($parse, $compile) {
@@ -1387,7 +1425,7 @@ function loadBlockerDirective() {
   }];
 }
 
-exports["default"] = loadBlockerDirective;
+exports.default = loadBlockerDirective;
 ;
 },{}],"node_modules/@fortawesome/fontawesome-free-webfonts/css/fontawesome.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -66087,7 +66125,9 @@ var __importDefault = this && this.__importDefault || function (mod) {
   };
 };
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 require('bootstrap-css-only');
 
@@ -66138,7 +66178,7 @@ require("../assets/css/main.scss"); // Best for last
   require('angularjs-toaster');
 
   var myapp = angular.module('fuzeAddressBook', ['ngCookies', 'ngAnimate', 'ui.router', 'ui.bootstrap', 'toaster']);
-  myapp.config(app_routes_1["default"]()).service('daoAddressBookService', dao_address_book_service_1["default"]()).service('daoContactsService', dao_contacts_service_1["default"]()).service('daoGroupsService', dao_groups_service_1["default"]()).service('localStorageService', local_storage_service_1["default"]()).service('modalAddressBookServiceContactsConfig', modal_address_book_contacts_config_1["default"]()).service('modalAddressBookServiceContactsDelete', modal_address_book_contacts_delete_1["default"]()).service('modalAddressBookGroupsServiceConfig', modal_address_book_groups_config_1["default"]()).service('modalAddressBookGroupsServiceDelete', modal_address_book_groups_delete_1["default"]()).service('authService', auth_service_1["default"]()).directive('fuzeAddressBookLoadingBlocker', loading_1["default"]());
+  myapp.config(app_routes_1.default()).service('daoAddressBookService', dao_address_book_service_1.default()).service('daoContactsService', dao_contacts_service_1.default()).service('daoGroupsService', dao_groups_service_1.default()).service('localStorageService', local_storage_service_1.default()).service('modalAddressBookServiceContactsConfig', modal_address_book_contacts_config_1.default()).service('modalAddressBookServiceContactsDelete', modal_address_book_contacts_delete_1.default()).service('modalAddressBookGroupsServiceConfig', modal_address_book_groups_config_1.default()).service('modalAddressBookGroupsServiceDelete', modal_address_book_groups_delete_1.default()).service('authService', auth_service_1.default()).directive('fuzeAddressBookLoadingBlocker', loading_1.default());
   myapp.controller('mainCtrl', ['$rootScope', '$scope', '$state', function ($rootScope, $scope, $state) {
     var key = 'myMainController';
 
@@ -66185,7 +66225,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49321" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49355" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
