@@ -9,15 +9,15 @@ export function controller(){
       , 'modalAddressBookGroupsServiceConfig'
       , 'modalAddressBookGroupsServiceDelete'
       , 'toaster'
-   , function($scope
-      , $q
-      , $state
-      , $stateParams
-      , daoGroupsService
-      , daoContactsService
-      , modalAddressBookGroupsServiceConfig
-      , modalAddressBookGroupsServiceDelete
-      , toaster
+   , function($scope: ng.IScope
+      , $q: ng.IQService
+      , $state: ng.ui.IStateService
+      , $stateParams: ng.ui.IStateParamsService
+      , daoGroupsService: any
+      , daoContactsService: any
+      , modalAddressBookGroupsServiceConfig: any
+      , modalAddressBookGroupsServiceDelete: any
+      , toaster: any
    ){
       const key = 'myController';
       const zpriv = {};

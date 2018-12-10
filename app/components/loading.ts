@@ -1,6 +1,6 @@
 export default function loadBlockerDirective(){
 
-   return ['$parse', '$compile', (($parse: $parse, $compile: $compile) => {
+   return ['$parse', '$compile', (($parse: ng.IParseService, $compile: ng.ICompileService) => {
 
       const fnTemplate = $compile(''+
          '<div class="fuze-address-book-loading-blocker-container" data-ng-show="loadInProgress">'+

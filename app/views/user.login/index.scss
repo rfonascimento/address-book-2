@@ -1,5 +1,11 @@
-.main-container.login{
-   padding: 4em;
+@media (min-width: 768px) {
+   .main-container.login{
+      padding: 4em;
+   }
+}
+
+.main-container.login {
+   padding: 2rem;
 }
 
 .text--create-new-account {
@@ -19,10 +25,8 @@
 .slogan {
    padding: 2rem;
 }
-.slogan h3 {
-   font-size: 3rem;
-}
-.slogan h3, .slogan h4 {
+
+.slogan h5, .slogan h3 {
    color: white;
    font-weight: 300;
 }

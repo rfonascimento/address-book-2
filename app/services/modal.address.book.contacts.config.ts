@@ -10,14 +10,14 @@ export default function modalAddressBookContactsConfig(){
          , 'daoGroupsService'
          , 'data'
          , 'toaster'
-      , ($scope:$scope
-         , $q:$q
-         , $state:$state
-         , $stateParams:$stateParams
-         , daoContactsService: object
-         , daoGroupsService: object
-         , data:object
-         , toaster:toaster
+      , ($scope: ng.IScope
+         , $q: ng.IQService
+         , $state: ng.ui.IStateService
+         , $stateParams: ng.ui.IStateParamsService
+         , daoContactsService: any
+         , daoGroupsService: any
+         , data:any
+         , toaster: any
       )=>{
          const key = 'myController';
          const zpriv = {};

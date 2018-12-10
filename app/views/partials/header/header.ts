@@ -4,10 +4,10 @@ export function controller(){
       , '$state'
       , '$stateParams'
       , 'authService'
-   , function($scope:$scope
-      , $state
-      , $stateParams
-      , authService
+   , function($scope: ng.IScope
+      , $state: ng.ui.IStateService
+      , $stateParams: ng.ui.IStateParamsService
+      , authService: any
       ){
       const key = 'myController';
       const zpriv = {};

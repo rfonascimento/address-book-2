@@ -41,7 +41,7 @@ import '../assets/css/main.scss'; // Best for last
 
 
 
-   myapp.controller('mainCtrl', ['$rootScope', '$scope', '$state', ($rootScope: $rootScope, $scope:$scope, $state:$state) =>{
+   myapp.controller('mainCtrl', ['$rootScope', '$scope', '$state', ($rootScope: angular.IRootScopeService, $scope: angular.IScopeService, $state: ng.ui.IStateService) =>{
       const key = 'myMainController';
       const myscope = $scope[key] = (($scope)=>{return{
          loadInProgress: false,

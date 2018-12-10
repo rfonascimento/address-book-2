@@ -1,9 +1,9 @@
-
+import * as angular from "angular";
 export default function appRoutes() {
    return ['$stateProvider'
       , '$urlRouterProvider'
-      , ($stateProvider
-         , $urlRouterProvider
+   , ($stateProvider: ng.ui.IStateProvider
+      , $urlRouterProvider: ng.ui.IUrlRouterProvider
       ) => {
 
          $stateProvider
@@ -52,7 +52,7 @@ export default function appRoutes() {
             .state('root.addressBook', {
                url: '⁄{candidate}/{addressBookId}',
                resolve: {
-                  userAuth: ['$state', '$stateParams', 'authService', ($state: $state, $stateParams:$stateParams, authService: authService)=>{
+                  userAuth: ['$state', '$stateParams', 'authService', ($state: ng.ui.IStateService, $stateParams: ng.ui.IStateParamsService, authService: any)=>{
                      if ( !angular.isString(authService.getUserAddressBookId()) )
                      {
                         $state.go('root.user.login', { candidate: $stateParams.candidate });

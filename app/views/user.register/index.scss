@@ -1,6 +1,13 @@
-.main-container.register{
-   padding: 4em;
+@media (min-width: 768px) {
+   .main-container.register{
+      padding: 4em;
+   }
 }
+
+.main-container.register {
+   padding: 2rem;
+}
+
 
 .text--login {
    font-weight: 300;

@@ -11,13 +11,13 @@ export function controller(){
       , 'toaster'
    , function($scope
       , $q
-      , $state
-      , $stateParams
-      , daoGroupsService
-      , daoContactsService
-      , modalAddressBookServiceContactsConfig
-      , modalAddressBookServiceContactsDelete
-      , toaster
+      , $state: ng.ui.IStateService
+      , $stateParams: ng.ui.IStateServiceService
+      , daoGroupsService: any
+      , daoContactsService: any
+      , modalAddressBookServiceContactsConfig: any
+      , modalAddressBookServiceContactsDelete: any
+      , toaster: any
    ){
       const key = 'myController';
       const zpriv = {};

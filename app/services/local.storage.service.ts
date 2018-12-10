@@ -1,5 +1,5 @@
 export default function LocalStorage(){
-   return ['$window', (($window:$window):object => {
+   return ['$window', (($window: ng.IWindowService):object => {
       return {
          set: function(key, value) {
             $window.localStorage[key] = value;

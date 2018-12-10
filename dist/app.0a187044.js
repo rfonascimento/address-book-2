@@ -177,1278 +177,7 @@ module.exports = reloadCSS;
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/partials/header/header.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/partials/header/header.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-require("./header.scss");
-
-function controller() {
-  return ['$scope', '$state', '$stateParams', 'authService', function ($scope, $state, $stateParams, authService) {
-    var key = 'myController';
-    var zpriv = {};
-
-    var myscope = $scope[key] = function ($scope) {
-      return {
-        loadInProgress: false,
-        candidate: $stateParams.candidate
-      };
-    }($scope);
-
-    myscope.actionLogout = function () {
-      authService.unsetUserAddressBookId();
-      $state.go('root.user', {
-        candidate: $stateParams.candidate
-      });
-    };
-
-    myscope.isUserLoggedIn = function () {
-      return angular.isString(authService.getUserAddressBookId());
-    };
-  }]; //
-}
-
-exports.controller = controller;
-},{"./header.scss":"app/views/partials/header/header.scss"}],"app/views/home/home.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function controller() {
-  return ['$scope', 'daoAddressBook', function ($scope, daoAddressBook) {
-    $scope.persona = {
-      name: "fffffffffffffffff",
-      id: 2
-    };
-  }];
-}
-
-exports.controller = controller;
-},{}],"app/views/partials/footer/footer.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function controller() {
-  return ['$scope', '$state', '$stateParams', function ($scope, $state, $stateParams) {}]; //
-}
-
-exports.controller = controller;
-},{}],"app/views/user.login/index.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/user.login/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-require("./index.scss");
-
-function controller() {
-  return ['$scope', '$state', '$stateParams', 'toaster', 'daoAddressBookService', 'authService', function ($scope, $state, $stateParams, toaster, daoAddressBookService, authService) {
-    var key = 'myController';
-
-    var myscope = $scope[key] = function ($scope) {
-      return {
-        loadInProgress: false,
-        data: {}
-      };
-    }($scope);
-
-    myscope.actionLogin = function (data) {
-      var addressBook = null;
-      myscope.loadInProgress = true;
-      return daoAddressBookService.get({
-        candidate: $stateParams.candidate
-      }, data).then(function (response) {
-        if (response && response.success && angular.isArray(response.data)) {
-          addressBook = response.data.reduce(function (output, addressBook) {
-            if (angular.isObject(output)) {
-              return output;
-            } else if (addressBook.username == myscope.data.username && addressBook.password == myscope.data.password) {
-              return addressBook;
-            } else {
-              return null;
-            }
-          }, null);
-
-          if (!angular.isObject(addressBook)) {
-            toaster.error("Authentication failed", "Please verify if the username and password are correct");
-          } else {
-            authService.setUserAddressBook(addressBook.id);
-            $state.go('root.addressBook', {
-              candidate: $stateParams.candidate,
-              addressBookId: addressBook.id
-            });
-          }
-        }
-      }).catch(function (error) {}).finally(function () {
-        myscope.loadInProgress = false;
-      });
-    };
-  }];
-}
-
-exports.controller = controller;
-},{"./index.scss":"app/views/user.login/index.scss"}],"app/views/user.register/index.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/user.register/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-require("./index.scss");
-
-function controller() {
-  return ['$scope', '$state', '$stateParams', 'toaster', 'daoAddressBookService', 'authService', function ($scope, $state, $stateParams, toaster, daoAddressBookService, authService) {
-    var key = 'myController';
-
-    var myscope = $scope[key] = function ($scope) {
-      return {
-        loadInProgress: false,
-        data: {}
-      };
-    }($scope);
-
-    myscope.actionCreate = function (data) {
-      myscope.loadInProgress = true;
-      return daoAddressBookService.create({
-        candidate: $stateParams.candidate
-      }, data).then(function (response) {
-        if (response && response.success) {
-          toaster.success("Account creation success", "Login with the new account");
-          $state.go('root.user', {
-            candidate: $stateParams.candidate
-          });
-        } else {
-          toaster.error("Account creation falied", "Please try again or contact support");
-        }
-      }).catch(function (error) {}).finally(function () {
-        myscope.loadInProgress = false;
-      });
-    };
-  }];
-}
-
-exports.controller = controller;
-},{"./index.scss":"app/views/user.register/index.scss"}],"app/views/partials/navigation/navigation.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function controller() {
-  return ['$scope', '$state', '$stateParams', function ($scope, $state, $stateParams) {
-    var key = 'myController';
-
-    var myscope = $scope[key] = function ($scope) {
-      return {
-        loadInProgress: false,
-        $state: $state
-      };
-    }($scope);
-
-    console.log($state);
-  }]; //
-}
-
-exports.controller = controller;
-},{}],"app/views/addressBook.contacts/index.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/addressBook.contacts/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-require("./index.scss");
-
-function controller() {
-  return ['$scope', '$q', '$state', '$stateParams', 'daoGroupsService', 'daoContactsService', 'modalAddressBookServiceContactsConfig', 'modalAddressBookServiceContactsDelete', 'toaster', function ($scope, $q, $state, $stateParams, daoGroupsService, daoContactsService, modalAddressBookServiceContactsConfig, modalAddressBookServiceContactsDelete, toaster) {
-    var key = 'myController';
-    var zpriv = {};
-
-    var myscope = $scope[key] = function ($scope) {
-      return {
-        loadInProgress: false,
-        dependenciesResolved: false,
-        data: [],
-        searchQuery: {},
-        searchQueryBy: '$',
-        navigation: {
-          states: [{
-            state: 'root.addressBook.contacts',
-            name: 'Contact list'
-          }, {
-            state: 'root.addressBook.groups',
-            name: 'Contact groups'
-          }],
-          selected: $state.$current.name
-        }
-      };
-    }($scope);
-
-    (function () {
-      myscope.loadInProgress = true;
-      $q.resolve(null).then(function () {
-        return daoGroupsService.getExtended(zpriv.getContext());
-      }).then(function (response) {
-        return myscope.groupsList = response.data;
-      }).then(function () {
-        return myscope.actionGetData();
-      }).finally(function () {
-        myscope.loadInProgress = false;
-        myscope.dependenciesResolved = true;
-      });
-    })();
-
-    myscope.actionGetData = function () {
-      myscope.loadInProgress = true;
-      return daoContactsService.getExtended(zpriv.getContext()).then(function (response) {
-        if (response.success == true) {
-          myscope.data = response.data.map(function (contact) {
-            if (!angular.isString(contact.pictureUrl) || contact.pictureUrl.lenght == 0) {
-              contact.pictureUrl = 'https://sprucegrovelandscaping.com/wp-content/uploads/2016/04/Photo-Not-Available.jpg';
-            }
-
-            return contact;
-          });
-          zpriv.getContactGroup(myscope.data);
-        } else {
-          toaster.error("Error", "It was not possible retrieve contact list at this point. Please try again");
-        }
-      }).finally(function () {
-        myscope.loadInProgress = false;
-      });
-    };
-
-    myscope.actionConfigContact = function (data) {
-      var contact;
-      return modalAddressBookServiceContactsConfig(data).then(function (response) {
-        contact = myscope.data.reduce(function (output, contact) {
-          if (!output && contact && contact.name == response.name) {
-            return contact;
-          }
-
-          return output;
-        }, null);
-
-        if (angular.isObject(contact)) {
-          angular.extend(contact, response);
-        } else {
-          myscope.data.push(response);
-          zpriv.getContactGroup(myscope.data);
-        }
-      });
-    };
-
-    myscope.actionDeleteContact = function (data) {
-      return modalAddressBookServiceContactsDelete(data).then(function (response) {
-        myscope.data.map(function (contact, index) {
-          if (contact.name == response.name) {
-            myscope.data.splice(index, 1);
-          }
-        });
-      });
-    };
-
-    myscope.navigate = function (state) {
-      $state.go(state);
-    };
-
-    zpriv.getContext = function () {
-      return {
-        candidate: $stateParams.candidate,
-        addressBookId: $stateParams.addressBookId
-      };
-    };
-
-    zpriv.getContactGroup = function (contactList) {
-      contactList.map(function (contact) {
-        contact.$$$groupName = myscope.groupsList.reduce(function (output, group) {
-          if (!output && group && group.id == contact.groupId) {
-            return group.name;
-          }
-
-          return output;
-        }, null);
-      });
-    };
-  }];
-}
-
-exports.controller = controller;
-},{"./index.scss":"app/views/addressBook.contacts/index.scss"}],"app/views/addressBook.groups/index.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/addressBook.groups/index.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-require("./index.scss");
-
-function controller() {
-  return ['$scope', '$q', '$state', '$stateParams', 'daoGroupsService', 'daoContactsService', 'modalAddressBookGroupsServiceConfig', 'modalAddressBookGroupsServiceDelete', 'toaster', function ($scope, $q, $state, $stateParams, daoGroupsService, daoContactsService, modalAddressBookGroupsServiceConfig, modalAddressBookGroupsServiceDelete, toaster) {
-    var key = 'myController';
-    var zpriv = {};
-
-    var myscope = $scope[key] = function ($scope) {
-      return {
-        loadInProgress: false,
-        data: [],
-        dependenciesResolved: false,
-        searchQuery: {},
-        searchQueryBy: '$',
-        navigation: {
-          states: [{
-            state: 'root.addressBook.contacts',
-            name: 'Contact list'
-          }, {
-            state: 'root.addressBook.groups',
-            name: 'Contact groups'
-          }],
-          selected: $state.$current.name
-        }
-      };
-    }($scope);
-
-    (function () {
-      myscope.loadInProgress = true;
-      $q.resolve(null).then(function () {
-        return daoContactsService.getExtended(zpriv.getContext());
-      }).then(function (response) {
-        return myscope.contactsList = response.data;
-      }).then(function () {
-        return myscope.actionGetData();
-      }).finally(function () {
-        myscope.loadInProgress = false;
-        myscope.dependenciesResolved = true;
-      });
-    })();
-
-    myscope.actionGetData = function () {
-      myscope.loadInProgress = true;
-      return daoGroupsService.getExtended(zpriv.getContext()).then(function (response) {
-        if (response.success == true) {
-          myscope.data = response.data.map(function (group) {
-            if (!angular.isString(group.pictureUrl) || group.pictureUrl.lenght == 0) {
-              group.pictureUrl = 'https://sprucegrovelandscaping.com/wp-content/uploads/2016/04/Photo-Not-Available.jpg';
-            }
-
-            return group;
-          });
-          zpriv.contactCount(myscope.data);
-        } else {
-          toaster.error("Error", "It was not possible retrieve groups list at this point. Please try again");
-        }
-      }).finally(function () {
-        myscope.loadInProgress = false;
-      });
-    };
-
-    myscope.actionConfigGroup = function (data) {
-      var contact;
-      return modalAddressBookGroupsServiceConfig(data).then(function (response) {
-        contact = myscope.data.reduce(function (output, group) {
-          if (!output && group && group.id == response.id) {
-            return group;
-          }
-
-          return output;
-        }, null);
-
-        if (angular.isObject(contact)) {
-          angular.extend(contact, response);
-        } else {
-          myscope.data.push(response);
-        }
-      });
-    };
-
-    myscope.actionDeleteGroup = function (data) {
-      return modalAddressBookGroupsServiceDelete(data).then(function (response) {
-        myscope.data.map(function (contact, index) {
-          if (contact.id == response.id) {
-            myscope.data.splice(index, 1);
-          }
-        });
-      });
-    };
-
-    myscope.navigate = function (state) {
-      $state.go(state);
-    };
-
-    zpriv.getContext = function () {
-      return {
-        candidate: $stateParams.candidate,
-        addressBookId: $stateParams.addressBookId
-      };
-    };
-
-    zpriv.contactCount = function (groupList) {
-      groupList.map(function (group, index) {
-        group.$$$count = myscope.contactsList.reduce(function (output, contact) {
-          if (contact.groupId == group.id) {
-            output++;
-          }
-
-          return output;
-        }, 0);
-      });
-    };
-  }];
-}
-
-exports.controller = controller;
-},{"./index.scss":"app/views/addressBook.groups/index.scss"}],"app/app-routes.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function appRoutes() {
-  return ['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    $stateProvider.state('root', {
-      url: '/root',
-      redirectTo: function redirectTo() {
-        return {
-          state: 'root.user',
-          params: {
-            candidate: 'rnascimento'
-          }
-        };
-      },
-      views: {
-        'header': {
-          template: require('./views/partials/header/header.html'),
-          controller: require('./views/partials/header/header').controller()
-        },
-        'main@': {
-          template: require('./views/home/home.html'),
-          controller: require('./views/home/home').controller()
-        },
-        'footer': {
-          template: require('./views/partials/footer/footer.html'),
-          controller: require('./views/partials/footer/footer').controller()
-        }
-      }
-    }).state('root.user', {
-      url: '/{candidate}',
-      redirectTo: 'root.user.login'
-    }).state('root.user.login', {
-      url: '/login',
-      views: {
-        'main@': {
-          template: require('./views/user.login/index.html'),
-          controller: require('./views/user.login/index').controller()
-        }
-      }
-    }).state('root.user.register', {
-      url: '/register',
-      views: {
-        'main@': {
-          template: require('./views/user.register/index.html'),
-          controller: require('./views/user.register/index').controller()
-        }
-      }
-    }).state('root.addressBook', {
-      url: '⁄{candidate}/{addressBookId}',
-      resolve: {
-        userAuth: ['$state', '$stateParams', 'authService', function ($state, $stateParams, authService) {
-          if (!angular.isString(authService.getUserAddressBookId())) {
-            $state.go('root.user.login', {
-              candidate: $stateParams.candidate
-            });
-          }
-        }]
-      },
-      views: {
-        'main@': {
-          template: '<nav data-ui-view="nav" class="main-navigation"></nav><aside data-ui-view="main-content" class="main-container"></aside>'
-        }
-      },
-      redirectTo: 'root.addressBook.contacts'
-    }).state('root.addressBook.contacts', {
-      url: '/contacts',
-      views: {
-        'nav': {
-          template: require('./views/partials/navigation/navigation.html'),
-          controller: require('./views/partials/navigation/navigation').controller()
-        },
-        'main-content': {
-          template: require('./views/addressBook.contacts/index.html'),
-          controller: require('./views/addressBook.contacts/index').controller()
-        }
-      }
-    }).state('root.addressBook.groups', {
-      url: '/groups',
-      views: {
-        'nav': {
-          template: require('./views/partials/navigation/navigation.html'),
-          controller: require('./views/partials/navigation/navigation').controller()
-        },
-        'main-content': {
-          template: require('./views/addressBook.groups/index.html'),
-          controller: require('./views/addressBook.groups/index').controller()
-        }
-      }
-    });
-    $urlRouterProvider.otherwise('root');
-  }];
-}
-
-exports.default = appRoutes;
-},{"./views/partials/header/header.html":"app/views/partials/header/header.html","./views/partials/header/header":"app/views/partials/header/header.ts","./views/home/home.html":"app/views/home/home.html","./views/home/home":"app/views/home/home.ts","./views/partials/footer/footer.html":"app/views/partials/footer/footer.html","./views/partials/footer/footer":"app/views/partials/footer/footer.ts","./views/user.login/index.html":"app/views/user.login/index.html","./views/user.login/index":"app/views/user.login/index.ts","./views/user.register/index.html":"app/views/user.register/index.html","./views/user.register/index":"app/views/user.register/index.ts","./views/partials/navigation/navigation.html":"app/views/partials/navigation/navigation.html","./views/partials/navigation/navigation":"app/views/partials/navigation/navigation.ts","./views/addressBook.contacts/index.html":"app/views/addressBook.contacts/index.html","./views/addressBook.contacts/index":"app/views/addressBook.contacts/index.ts","./views/addressBook.groups/index.html":"app/views/addressBook.groups/index.html","./views/addressBook.groups/index":"app/views/addressBook.groups/index.ts"}],"app/services/dao.address.book.service.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function daoAddressBook() {
-  return ['$http', '$parse', '$stateParams', 'localStorageService', function ($http, $parse, $stateParams, localStorageService) {
-    var dao = {};
-    var zpriv = {};
-
-    zpriv.getUrl = function (type, context) {
-      switch (type) {
-        case 'self':
-          {
-            return "https://frontend-addressbook.herokuapp.com/";
-          }
-          break;
-
-        case 'addressBook':
-          {
-            return "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/";
-          }
-          break;
-
-        default:
-          return null;
-      }
-    };
-
-    dao.get = function (context, data) {
-      var candidate;
-      var url = zpriv.getUrl('addressBook', context);
-      return $http.get(url).then(function (response) {
-        localStorageService.setObject('fuzeAddressBookCandidateData', $parse('data.value')(response));
-        return {
-          success: true,
-          data: ((response || {}).data || {}).value
-        };
-      }).catch(function (error) {
-        if (angular.isObject(candidate = localStorageService.getObject('fuzeAddressBookCandidateData'))) {
-          return {
-            success: true,
-            data: candidate
-          };
-        } else {
-          return {
-            success: false,
-            error: error
-          };
-        }
-      });
-    };
-
-    dao.create = function (context, data) {
-      var url = zpriv.getUrl('addressBook', context);
-      return $http.post(url, data).then(function (response) {
-        return {
-          success: true,
-          data: ((response || {}).data || {}).value
-        };
-      }).catch(function (error) {
-        return {
-          success: false,
-          error: error
-        };
-      });
-    };
-
-    return dao;
-  }];
-}
-
-exports.default = daoAddressBook;
-;
-},{}],"app/services/dao.contacts.service.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function daoContacts() {
-  return ['$http', '$stateParams', '$parse', 'localStorageService', function ($http, $stateParams, $parse, localStorageService) {
-    var dao = {};
-    var zpriv = {};
-
-    zpriv.getUrl = function (context, data) {
-      if (data && data.name) {
-        return "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId + "/contacts/" + data.name;
-      } else {
-        return "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId + "/contacts/";
-      }
-    };
-
-    zpriv.rest2gui = function (data) {};
-
-    dao.get = function (context, data) {
-      var url = zpriv.getUrl(context, data);
-      return $http.get(url).then(function (response) {
-        return {
-          success: true,
-          data: ((response || {}).data || {}).value
-        };
-      }).catch(function (error) {
-        return {
-          success: false,
-          error: error
-        };
-      });
-    }; // Apparently there's no GET to the resource per se
-
-
-    dao.getExtended = function (context) {
-      var data;
-      var url = "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId;
-      return $http.get(url).then(function (response) {
-        localStorageService.setObject('fuzeAddressBookContactsData', $parse('data.value.contacts')(response));
-        return {
-          success: true,
-          data: $parse('data.value.contacts')(response)
-        };
-      }).catch(function (error) {
-        if (angular.isObject(data = localStorageService.getObject('fuzeAddressBookContactsData'))) {
-          return {
-            success: true,
-            data: data
-          };
-        } else {
-          return {
-            success: false,
-            error: error
-          };
-        }
-      });
-    };
-
-    dao.create = function (context, data) {
-      var url = "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId + "/contacts/";
-      return $http.post(url, data).then(function (response) {
-        return {
-          success: true,
-          data: ((response || {}).data || {}).value
-        };
-      }).catch(function (error) {
-        return {
-          success: false,
-          error: error
-        };
-      });
-    };
-
-    dao.config = function (context, data) {
-      var url = zpriv.getUrl(context, data);
-      return $http.put(url, data).then(function (response) {
-        return {
-          success: true,
-          data: ((response || {}).data || {}).value
-        };
-      }).catch(function (error) {
-        return {
-          success: false,
-          error: error
-        };
-      });
-    };
-
-    dao.remove = function (context, data) {
-      var url = zpriv.getUrl(context, data);
-      return $http.delete(url, data).then(function (response) {
-        return {
-          success: true,
-          data: ((response || {}).data || {}).value
-        };
-      }).catch(function (error) {
-        return {
-          success: false,
-          error: error
-        };
-      });
-    };
-
-    return dao;
-  }];
-}
-
-exports.default = daoContacts;
-;
-},{}],"app/services/dao.groups.service.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function daoGroups() {
-  return ['$http', '$stateParams', '$parse', 'localStorageService', function ($http, $stateParams, $parse, localStorageService) {
-    var dao = {};
-    var zpriv = {};
-
-    zpriv.getUrl = function (context, data) {
-      if (data && data.id) {
-        return "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId + "/groups/" + data.id;
-      } else {
-        return "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId + "/groups/";
-      }
-    };
-
-    zpriv.rest2gui = function (data) {};
-
-    dao.get = function (context, data) {
-      var url = zpriv.getUrl(context, data);
-      return $http.get(url).then(function (response) {
-        return {
-          success: true,
-          data: ((response || {}).data || {}).value
-        };
-      }).catch(function (error) {
-        return {
-          success: false,
-          error: error
-        };
-      });
-    }; // Apparently there's no GET to the resource per se
-
-
-    dao.getExtended = function (context) {
-      var data;
-      var url = "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId;
-      return $http.get(url).then(function (response) {
-        localStorageService.setObject('fuzeAddressBookGroupsData', $parse('data.value.groups')(response));
-        return {
-          success: true,
-          data: $parse('data.value.groups')(response)
-        };
-      }).catch(function (error) {
-        if (angular.isObject(data = localStorageService.getObject('fuzeAddressBookGroupsData'))) {
-          return {
-            success: true,
-            data: data
-          };
-        } else {
-          return {
-            success: false,
-            error: error
-          };
-        }
-      });
-    };
-
-    dao.create = function (context, data) {
-      var url = "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId + "/groups/";
-      return $http.post(url, data).then(function (response) {
-        return {
-          success: true,
-          data: ((response || {}).data || {}).value
-        };
-      }).catch(function (error) {
-        return {
-          success: false,
-          error: error
-        };
-      });
-    };
-
-    dao.config = function (context, data) {
-      var url = zpriv.getUrl(context, data);
-      return $http.put(url, data).then(function (response) {
-        return {
-          success: true,
-          data: ((response || {}).data || {}).value
-        };
-      }).catch(function (error) {
-        return {
-          success: false,
-          error: error
-        };
-      });
-    };
-
-    dao.remove = function (context, data) {
-      var url = zpriv.getUrl(context, data);
-      return $http.delete(url, data).then(function (response) {
-        return {
-          success: true,
-          data: ((response || {}).data || {}).value
-        };
-      }).catch(function (error) {
-        return {
-          success: false,
-          error: error
-        };
-      });
-    };
-
-    return dao;
-  }];
-}
-
-exports.default = daoGroups;
-;
-},{}],"app/services/local.storage.service.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function LocalStorage() {
-  return ['$window', function ($window) {
-    return {
-      set: function set(key, value) {
-        $window.localStorage[key] = value;
-      },
-      get: function get(key, defaultValue) {
-        return $window.localStorage[key] || defaultValue;
-      },
-      setObject: function setObject(key, value) {
-        $window.localStorage[key] = JSON.stringify(value);
-      },
-      getObject: function getObject(key) {
-        return JSON.parse($window.localStorage[key] || '{}');
-      }
-    };
-  }];
-}
-
-exports.default = LocalStorage;
-;
-},{}],"app/services/modal.address.book.contacts.config.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function modalAddressBookContactsConfig() {
-  return ['$uibModal', function ($uibModal) {
-    var ctrl = ['$scope', '$q', '$state', '$stateParams', 'daoContactsService', 'daoGroupsService', 'data', 'toaster', function ($scope, $q, $state, $stateParams, daoContactsService, daoGroupsService, data, toaster) {
-      var key = 'myController';
-      var zpriv = {};
-
-      var myscope = $scope[key] = function ($scope) {
-        return {
-          loadInProgress: false,
-          data: angular.copy(data) || {},
-          isInEdition: angular.isObject(data),
-          isInCreation: !angular.isObject(data)
-        };
-      }($scope);
-
-      (function () {
-        myscope.loadInProgress = true;
-        $q.resolve(null).then(function () {
-          return daoGroupsService.getExtended(zpriv.getContext());
-        }).then(function (response) {
-          myscope.groupsList = response.data;
-        }).finally(function () {
-          myscope.loadInProgress = false;
-        });
-      })();
-
-      myscope.actionConfigContact = function () {
-        var promise = null;
-        myscope.loadInProgress = true;
-
-        if (myscope.isInCreation) {
-          promise = daoContactsService.create(zpriv.getContext(), myscope.data);
-        } else {
-          promise = daoContactsService.config(zpriv.getContext(), myscope.data);
-        }
-
-        return promise.then(function (response) {
-          if (response.success == true) {
-            if (myscope.isInCreation) {
-              toaster.success("Success", "Contact successfully created");
-            } else {
-              toaster.success("Success", "Contact successfully updated");
-            }
-
-            return $scope.$close(myscope.data);
-          } else {
-            toaster.error("Error", "It was not possible to configure the contact. Please try again");
-          }
-        }).finally(function () {
-          myscope.loadInProgress = false;
-        });
-      };
-
-      myscope.getGroups = function () {
-        return myscope.groupsList;
-      };
-
-      myscope.createNewContact = function () {
-        $scope.$dismiss();
-        $state.go('root.addressBook.groups');
-      };
-
-      zpriv.getContext = function () {
-        return {
-          candidate: $stateParams.candidate,
-          addressBookId: $stateParams.addressBookId
-        };
-      };
-    }];
-    return function (data) {
-      return $uibModal.open({
-        controller: ctrl,
-        backdrop: 'static',
-        template: require('./modal.address.book.contacts.config.tpl.html'),
-        resolve: {
-          data: [function () {
-            return data;
-          }] //templateUrl: require('modal.address.book.contacts.config.tpl.html')
-
-        }
-      }).result;
-    };
-  }];
-}
-
-exports.default = modalAddressBookContactsConfig;
-;
-},{"./modal.address.book.contacts.config.tpl.html":"app/services/modal.address.book.contacts.config.tpl.html"}],"app/services/modal.address.book.contacts.delete.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function modalAddressBookContactsDelete() {
-  return ['$uibModal', function ($uibModal) {
-    var ctrl = ['$scope', '$q', '$stateParams', 'daoContactsService', 'daoGroupsService', 'data', 'toaster', function ($scope, $q, $stateParams, daoContactsService, daoGroupsService, data, toaster) {
-      var key = 'myController';
-      var zpriv = {};
-
-      var myscope = $scope[key] = function ($scope) {
-        return {
-          loadInProgress: false,
-          data: angular.copy(data) || {}
-        };
-      }($scope);
-
-      myscope.actionDeleteContact = function () {
-        myscope.loadInProgress = true;
-        return daoContactsService.remove(zpriv.getContext(), myscope.data).then(function (response) {
-          if (response.success == true) {
-            toaster.success("Success", "Contact successfully deleted");
-            return $scope.$close(myscope.data);
-          } else {
-            toaster.error("Error", "It was not possible to delete the contact. Please try again");
-          }
-        }).finally(function () {
-          myscope.loadInProgress = false;
-        });
-      };
-
-      zpriv.getContext = function () {
-        return {
-          candidate: $stateParams.candidate,
-          addressBookId: $stateParams.addressBookId
-        };
-      };
-    }];
-    return function (data) {
-      return $uibModal.open({
-        controller: ctrl,
-        backdrop: 'static',
-        template: require('./modal.address.book.contacts.delete.tpl.html'),
-        resolve: {
-          data: [function () {
-            return data;
-          }] //templateUrl: require('modal.address.book.contacts.config.tpl.html')
-
-        }
-      }).result;
-    };
-  }];
-}
-
-exports.default = modalAddressBookContactsDelete;
-;
-},{"./modal.address.book.contacts.delete.tpl.html":"app/services/modal.address.book.contacts.delete.tpl.html"}],"app/services/modal.address.book.groups.config.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function modalAddressBookGroupsConfig() {
-  return ['$uibModal', function ($uibModal) {
-    var ctrl = ['$scope', '$q', '$stateParams', 'daoGroupsService', 'data', 'toaster', function ($scope, $q, $stateParams, daoGroupsService, data, toaster) {
-      var key = 'myController';
-      var zpriv = {};
-
-      var myscope = $scope[key] = function ($scope) {
-        return {
-          loadInProgress: false,
-          data: angular.copy(data) || {},
-          isInEdition: angular.isObject(data),
-          isInCreation: !angular.isObject(data)
-        };
-      }($scope);
-
-      (function () {
-        myscope.loadInProgress = true;
-        $q.resolve(null).then(function () {
-          return daoGroupsService.getExtended(zpriv.getContext());
-        }).then(function (response) {
-          myscope.groupsList = response.data;
-
-          if (myscope.isInCreation) {
-            myscope.data.id = myscope.groupsList.length + 1;
-          }
-        }).finally(function () {
-          myscope.loadInProgress = false;
-        });
-      })();
-
-      myscope.actionConfigGroup = function () {
-        var promise = null;
-        myscope.loadInProgress = true;
-
-        if (myscope.isInCreation) {
-          promise = daoGroupsService.create(zpriv.getContext(), myscope.data);
-        } else {
-          promise = daoGroupsService.config(zpriv.getContext(), myscope.data);
-        }
-
-        return promise.then(function (response) {
-          if (response.success == true) {
-            if (myscope.isInCreation) {
-              toaster.success("Success", "Group successfully created");
-            } else {
-              toaster.success("Success", "Group successfully updated");
-            }
-
-            return $scope.$close(myscope.data);
-          } else {
-            toaster.error("Error", "It was not possible to configure the contact group. Please try again");
-          }
-        }).finally(function () {
-          myscope.loadInProgress = false;
-        });
-      };
-
-      zpriv.getContext = function () {
-        return {
-          candidate: $stateParams.candidate,
-          addressBookId: $stateParams.addressBookId
-        };
-      };
-    }];
-    return function (data) {
-      return $uibModal.open({
-        controller: ctrl,
-        backdrop: 'static',
-        template: require('./modal.address.book.groups.config.tpl.html'),
-        resolve: {
-          data: [function () {
-            return data;
-          }]
-        }
-      }).result;
-    };
-  }];
-}
-
-exports.default = modalAddressBookGroupsConfig;
-;
-},{"./modal.address.book.groups.config.tpl.html":"app/services/modal.address.book.groups.config.tpl.html"}],"app/services/modal.address.book.groups.delete.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function modalAddressBookContactsDelete() {
-  return ['$uibModal', function ($uibModal) {
-    var ctrl = ['$scope', '$q', '$stateParams', 'daoGroupsService', 'data', 'toaster', function ($scope, $q, $stateParams, daoGroupsService, data, toaster) {
-      var key = 'myController';
-      var zpriv = {};
-
-      var myscope = $scope[key] = function ($scope) {
-        return {
-          loadInProgress: false,
-          data: angular.copy(data) || {}
-        };
-      }($scope);
-
-      myscope.actionDeleteGroup = function () {
-        myscope.loadInProgress = true;
-        return daoGroupsService.remove(zpriv.getContext(), myscope.data).then(function (response) {
-          if (response.success == true) {
-            toaster.success("Success", "Group successfully deleted");
-            return $scope.$close(myscope.data);
-          } else {
-            toaster.error("Error", "It was not possible to delete the contact group. Please try again");
-          }
-        }).finally(function () {
-          myscope.loadInProgress = false;
-        });
-      };
-
-      zpriv.getContext = function () {
-        return {
-          candidate: $stateParams.candidate,
-          addressBookId: $stateParams.addressBookId
-        };
-      };
-    }];
-    return function (data) {
-      return $uibModal.open({
-        controller: ctrl,
-        backdrop: 'static',
-        template: require('./modal.address.book.groups.delete.tpl.html'),
-        resolve: {
-          data: [function () {
-            return data;
-          }]
-        }
-      }).result;
-    };
-  }];
-}
-
-exports.default = modalAddressBookContactsDelete;
-;
-},{"./modal.address.book.groups.delete.tpl.html":"app/services/modal.address.book.groups.delete.tpl.html"}],"app/services/auth.service.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function Auth() {
-  return ['$cookies', '$stateParams', function ($cookies, $stateParams) {
-    var zpriv = {};
-    var service = {};
-
-    service.getUserAddressBookId = function () {
-      return $cookies.get('userAddressBookId');
-    };
-
-    service.setUserAddressBook = function (userAddressBook) {
-      return $cookies.put('userAddressBookId', userAddressBook);
-    };
-
-    service.unsetUserAddressBookId = function () {
-      return $cookies.remove('userAddressBookId');
-    };
-
-    return service;
-  }];
-}
-
-exports.default = Auth;
-;
-},{}],"app/components/loading.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function loadBlockerDirective() {
-  return ['$parse', '$compile', function ($parse, $compile) {
-    var fnTemplate = $compile('' + '<div class="fuze-address-book-loading-blocker-container" data-ng-show="loadInProgress">' + '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>' + '</div>');
-    return {
-      compile: function compile(tElement, tAttrs) {
-        var fnSettings = $parse(tAttrs.fuzeAddressBookLoadingBlocker);
-        return {
-          post: function post($scope, element, attrs, ctrls) {
-            var myscope = $scope.$new(true);
-            myscope.loadInProgress = fnSettings($scope);
-            fnTemplate(myscope, function (clone) {
-              element.append(clone);
-            });
-            $scope.$on('$destroy', function () {
-              myscope.$destroy();
-            });
-            $scope.$watch(function () {
-              return fnSettings($scope);
-            }, function (newValue) {
-              myscope.loadInProgress = newValue;
-            });
-          }
-        };
-      }
-    };
-  }];
-}
-
-exports.default = loadBlockerDirective;
-;
-},{}],"node_modules/@fortawesome/fontawesome-free-webfonts/css/fontawesome.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./../webfonts/fa-solid-900.eot":[["fa-solid-900.31934b57.eot","node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.eot"],"node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.eot"],"./../webfonts/fa-solid-900.woff2":[["fa-solid-900.38330afc.woff2","node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.woff2"],"node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.woff2"],"./../webfonts/fa-solid-900.woff":[["fa-solid-900.d2b06e6d.woff","node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.woff"],"node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.woff"],"./../webfonts/fa-solid-900.ttf":[["fa-solid-900.092036b3.ttf","node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.ttf"],"node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.ttf"],"./../webfonts/fa-solid-900.svg":[["fa-solid-900.6dcf2092.svg","node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.svg"],"node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.svg"],"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"node_modules/angularjs-toaster/toaster.css":[function(require,module,exports) {
-
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"assets/css/main.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./../images/bg_full_landing_page.png":[["bg_full_landing_page.a8824d78.png","assets/images/bg_full_landing_page.png"],"assets/images/bg_full_landing_page.png"],"./../images/logo.svg":[["logo.d714b74f.svg","assets/images/logo.svg"],"assets/images/logo.svg"],"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"node_modules/angular/angular.js":[function(require,module,exports) {
+},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"node_modules/angular/angular.js":[function(require,module,exports) {
 /**
  * @license AngularJS v1.7.5
  * (c) 2010-2018 Google, Inc. http://angularjs.org
@@ -37674,7 +36403,1285 @@ $provide.value("$locale", {
 require('./angular');
 module.exports = angular;
 
-},{"./angular":"node_modules/angular/angular.js"}],"node_modules/angularjs/index.js":[function(require,module,exports) {
+},{"./angular":"node_modules/angular/angular.js"}],"app/views/partials/header/header.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/partials/header/header.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+require("./header.scss");
+
+function controller() {
+  return ['$scope', '$state', '$stateParams', 'authService', function ($scope, $state, $stateParams, authService) {
+    var key = 'myController';
+    var zpriv = {};
+
+    var myscope = $scope[key] = function ($scope) {
+      return {
+        loadInProgress: false,
+        candidate: $stateParams.candidate
+      };
+    }($scope);
+
+    myscope.actionLogout = function () {
+      authService.unsetUserAddressBookId();
+      $state.go('root.user', {
+        candidate: $stateParams.candidate
+      });
+    };
+
+    myscope.isUserLoggedIn = function () {
+      return angular.isString(authService.getUserAddressBookId());
+    };
+  }]; //
+}
+
+exports.controller = controller;
+},{"./header.scss":"app/views/partials/header/header.scss"}],"app/views/home/home.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function controller() {
+  return ['$scope', function ($scope) {}];
+}
+
+exports.controller = controller;
+},{}],"app/views/partials/footer/footer.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function controller() {
+  return ['$scope', function ($scope) {}]; //
+}
+
+exports.controller = controller;
+},{}],"app/views/user.login/index.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/user.login/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+require("./index.scss");
+
+function controller() {
+  return ['$scope', '$state', '$stateParams', 'toaster', 'daoAddressBookService', 'authService', function ($scope, $state, $stateParams, toaster, daoAddressBookService, authService) {
+    var key = 'myController';
+
+    var myscope = $scope[key] = function ($scope) {
+      return {
+        loadInProgress: false,
+        data: {}
+      };
+    }($scope);
+
+    myscope.actionLogin = function (data) {
+      var addressBook = null;
+      myscope.loadInProgress = true;
+      return daoAddressBookService.get({
+        candidate: $stateParams.candidate
+      }, data).then(function (response) {
+        if (response && response.success && angular.isArray(response.data)) {
+          addressBook = response.data.reduce(function (output, addressBook) {
+            if (angular.isObject(output)) {
+              return output;
+            } else if (addressBook.username == myscope.data.username && addressBook.password == myscope.data.password) {
+              return addressBook;
+            } else {
+              return null;
+            }
+          }, null);
+
+          if (!angular.isObject(addressBook)) {
+            toaster.error("Authentication failed", "Please verify if the username and password are correct");
+          } else {
+            authService.setUserAddressBook(addressBook.id);
+            $state.go('root.addressBook', {
+              candidate: $stateParams.candidate,
+              addressBookId: addressBook.id
+            });
+          }
+        }
+      }).catch(function (error) {}).finally(function () {
+        myscope.loadInProgress = false;
+      });
+    };
+  }];
+}
+
+exports.controller = controller;
+},{"./index.scss":"app/views/user.login/index.scss"}],"app/views/user.register/index.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/user.register/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+require("./index.scss");
+
+function controller() {
+  return ['$scope', '$state', '$stateParams', 'toaster', 'daoAddressBookService', 'authService', function ($scope, $state, $stateParams, toaster, daoAddressBookService, authService) {
+    var key = 'myController';
+
+    var myscope = $scope[key] = function ($scope) {
+      return {
+        loadInProgress: false,
+        data: {}
+      };
+    }($scope);
+
+    myscope.actionCreate = function (data) {
+      myscope.loadInProgress = true;
+      return daoAddressBookService.create({
+        candidate: $stateParams.candidate
+      }, data).then(function (response) {
+        if (response && response.success) {
+          toaster.success("Account creation success", "Login with the new account");
+          $state.go('root.user', {
+            candidate: $stateParams.candidate
+          });
+        } else {
+          toaster.error("Account creation falied", "Please try again or contact support");
+        }
+      }).catch(function (error) {}).finally(function () {
+        myscope.loadInProgress = false;
+      });
+    };
+  }];
+}
+
+exports.controller = controller;
+},{"./index.scss":"app/views/user.register/index.scss"}],"app/views/partials/navigation/navigation.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function controller() {
+  return ['$scope', '$state', '$stateParams', function ($scope, $state, $stateParams) {
+    var key = 'myController';
+
+    var myscope = $scope[key] = function ($scope) {
+      return {
+        loadInProgress: false,
+        $state: $state
+      };
+    }($scope);
+
+    console.log($state);
+  }]; //
+}
+
+exports.controller = controller;
+},{}],"app/views/addressBook.contacts/index.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/addressBook.contacts/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+require("./index.scss");
+
+function controller() {
+  return ['$scope', '$q', '$state', '$stateParams', 'daoGroupsService', 'daoContactsService', 'modalAddressBookServiceContactsConfig', 'modalAddressBookServiceContactsDelete', 'toaster', function ($scope, $q, $state, $stateParams, daoGroupsService, daoContactsService, modalAddressBookServiceContactsConfig, modalAddressBookServiceContactsDelete, toaster) {
+    var key = 'myController';
+    var zpriv = {};
+
+    var myscope = $scope[key] = function ($scope) {
+      return {
+        loadInProgress: false,
+        dependenciesResolved: false,
+        data: [],
+        searchQuery: {},
+        searchQueryBy: '$',
+        navigation: {
+          states: [{
+            state: 'root.addressBook.contacts',
+            name: 'Contact list'
+          }, {
+            state: 'root.addressBook.groups',
+            name: 'Contact groups'
+          }],
+          selected: $state.$current.name
+        }
+      };
+    }($scope);
+
+    (function () {
+      myscope.loadInProgress = true;
+      $q.resolve(null).then(function () {
+        return daoGroupsService.getExtended(zpriv.getContext());
+      }).then(function (response) {
+        return myscope.groupsList = response.data;
+      }).then(function () {
+        return myscope.actionGetData();
+      }).finally(function () {
+        myscope.loadInProgress = false;
+        myscope.dependenciesResolved = true;
+      });
+    })();
+
+    myscope.actionGetData = function () {
+      myscope.loadInProgress = true;
+      return daoContactsService.getExtended(zpriv.getContext()).then(function (response) {
+        if (response.success == true) {
+          myscope.data = response.data.map(function (contact) {
+            if (!angular.isString(contact.pictureUrl) || contact.pictureUrl.lenght == 0) {
+              contact.pictureUrl = 'https://sprucegrovelandscaping.com/wp-content/uploads/2016/04/Photo-Not-Available.jpg';
+            }
+
+            return contact;
+          });
+          zpriv.getContactGroup(myscope.data);
+        } else {
+          toaster.error("Error", "It was not possible retrieve contact list at this point. Please try again");
+        }
+      }).finally(function () {
+        myscope.loadInProgress = false;
+      });
+    };
+
+    myscope.actionConfigContact = function (data) {
+      var contact;
+      return modalAddressBookServiceContactsConfig(data).then(function (response) {
+        contact = myscope.data.reduce(function (output, contact) {
+          if (!output && contact && contact.name == response.name) {
+            return contact;
+          }
+
+          return output;
+        }, null);
+
+        if (angular.isObject(contact)) {
+          angular.extend(contact, response);
+        } else {
+          myscope.data.push(response);
+          zpriv.getContactGroup(myscope.data);
+        }
+      });
+    };
+
+    myscope.actionDeleteContact = function (data) {
+      return modalAddressBookServiceContactsDelete(data).then(function (response) {
+        myscope.data.map(function (contact, index) {
+          if (contact.name == response.name) {
+            myscope.data.splice(index, 1);
+          }
+        });
+      });
+    };
+
+    myscope.navigate = function (state) {
+      $state.go(state);
+    };
+
+    zpriv.getContext = function () {
+      return {
+        candidate: $stateParams.candidate,
+        addressBookId: $stateParams.addressBookId
+      };
+    };
+
+    zpriv.getContactGroup = function (contactList) {
+      contactList.map(function (contact) {
+        contact.$$$groupName = myscope.groupsList.reduce(function (output, group) {
+          if (!output && group && group.id == contact.groupId) {
+            return group.name;
+          }
+
+          return output;
+        }, null);
+      });
+    };
+  }];
+}
+
+exports.controller = controller;
+},{"./index.scss":"app/views/addressBook.contacts/index.scss"}],"app/views/addressBook.groups/index.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"app/views/addressBook.groups/index.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+require("./index.scss");
+
+function controller() {
+  return ['$scope', '$q', '$state', '$stateParams', 'daoGroupsService', 'daoContactsService', 'modalAddressBookGroupsServiceConfig', 'modalAddressBookGroupsServiceDelete', 'toaster', function ($scope, $q, $state, $stateParams, daoGroupsService, daoContactsService, modalAddressBookGroupsServiceConfig, modalAddressBookGroupsServiceDelete, toaster) {
+    var key = 'myController';
+    var zpriv = {};
+
+    var myscope = $scope[key] = function ($scope) {
+      return {
+        loadInProgress: false,
+        data: [],
+        dependenciesResolved: false,
+        searchQuery: {},
+        searchQueryBy: '$',
+        navigation: {
+          states: [{
+            state: 'root.addressBook.contacts',
+            name: 'Contact list'
+          }, {
+            state: 'root.addressBook.groups',
+            name: 'Contact groups'
+          }],
+          selected: $state.$current.name
+        }
+      };
+    }($scope);
+
+    (function () {
+      myscope.loadInProgress = true;
+      $q.resolve(null).then(function () {
+        return daoContactsService.getExtended(zpriv.getContext());
+      }).then(function (response) {
+        return myscope.contactsList = response.data;
+      }).then(function () {
+        return myscope.actionGetData();
+      }).finally(function () {
+        myscope.loadInProgress = false;
+        myscope.dependenciesResolved = true;
+      });
+    })();
+
+    myscope.actionGetData = function () {
+      myscope.loadInProgress = true;
+      return daoGroupsService.getExtended(zpriv.getContext()).then(function (response) {
+        if (response.success == true) {
+          myscope.data = response.data.map(function (group) {
+            if (!angular.isString(group.pictureUrl) || group.pictureUrl.lenght == 0) {
+              group.pictureUrl = 'https://sprucegrovelandscaping.com/wp-content/uploads/2016/04/Photo-Not-Available.jpg';
+            }
+
+            return group;
+          });
+          zpriv.contactCount(myscope.data);
+        } else {
+          toaster.error("Error", "It was not possible retrieve groups list at this point. Please try again");
+        }
+      }).finally(function () {
+        myscope.loadInProgress = false;
+      });
+    };
+
+    myscope.actionConfigGroup = function (data) {
+      var contact;
+      return modalAddressBookGroupsServiceConfig(data).then(function (response) {
+        contact = myscope.data.reduce(function (output, group) {
+          if (!output && group && group.id == response.id) {
+            return group;
+          }
+
+          return output;
+        }, null);
+
+        if (angular.isObject(contact)) {
+          angular.extend(contact, response);
+        } else {
+          myscope.data.push(response);
+        }
+      });
+    };
+
+    myscope.actionDeleteGroup = function (data) {
+      return modalAddressBookGroupsServiceDelete(data).then(function (response) {
+        myscope.data.map(function (contact, index) {
+          if (contact.id == response.id) {
+            myscope.data.splice(index, 1);
+          }
+        });
+      });
+    };
+
+    myscope.navigate = function (state) {
+      $state.go(state);
+    };
+
+    zpriv.getContext = function () {
+      return {
+        candidate: $stateParams.candidate,
+        addressBookId: $stateParams.addressBookId
+      };
+    };
+
+    zpriv.contactCount = function (groupList) {
+      groupList.map(function (group, index) {
+        group.$$$count = myscope.contactsList.reduce(function (output, contact) {
+          if (contact.groupId == group.id) {
+            output++;
+          }
+
+          return output;
+        }, 0);
+      });
+    };
+  }];
+}
+
+exports.controller = controller;
+},{"./index.scss":"app/views/addressBook.groups/index.scss"}],"app/app-routes.ts":[function(require,module,exports) {
+"use strict";
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+  }
+  result["default"] = mod;
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var angular = __importStar(require("angular"));
+
+function appRoutes() {
+  return ['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    $stateProvider.state('root', {
+      url: '/root',
+      redirectTo: function redirectTo() {
+        return {
+          state: 'root.user',
+          params: {
+            candidate: 'rnascimento'
+          }
+        };
+      },
+      views: {
+        'header': {
+          template: require('./views/partials/header/header.html'),
+          controller: require('./views/partials/header/header').controller()
+        },
+        'main@': {
+          template: require('./views/home/home.html'),
+          controller: require('./views/home/home').controller()
+        },
+        'footer': {
+          template: require('./views/partials/footer/footer.html'),
+          controller: require('./views/partials/footer/footer').controller()
+        }
+      }
+    }).state('root.user', {
+      url: '/{candidate}',
+      redirectTo: 'root.user.login'
+    }).state('root.user.login', {
+      url: '/login',
+      views: {
+        'main@': {
+          template: require('./views/user.login/index.html'),
+          controller: require('./views/user.login/index').controller()
+        }
+      }
+    }).state('root.user.register', {
+      url: '/register',
+      views: {
+        'main@': {
+          template: require('./views/user.register/index.html'),
+          controller: require('./views/user.register/index').controller()
+        }
+      }
+    }).state('root.addressBook', {
+      url: '⁄{candidate}/{addressBookId}',
+      resolve: {
+        userAuth: ['$state', '$stateParams', 'authService', function ($state, $stateParams, authService) {
+          if (!angular.isString(authService.getUserAddressBookId())) {
+            $state.go('root.user.login', {
+              candidate: $stateParams.candidate
+            });
+          }
+        }]
+      },
+      views: {
+        'main@': {
+          template: '<nav data-ui-view="nav" class="main-navigation"></nav><aside data-ui-view="main-content" class="main-container"></aside>'
+        }
+      },
+      redirectTo: 'root.addressBook.contacts'
+    }).state('root.addressBook.contacts', {
+      url: '/contacts',
+      views: {
+        'nav': {
+          template: require('./views/partials/navigation/navigation.html'),
+          controller: require('./views/partials/navigation/navigation').controller()
+        },
+        'main-content': {
+          template: require('./views/addressBook.contacts/index.html'),
+          controller: require('./views/addressBook.contacts/index').controller()
+        }
+      }
+    }).state('root.addressBook.groups', {
+      url: '/groups',
+      views: {
+        'nav': {
+          template: require('./views/partials/navigation/navigation.html'),
+          controller: require('./views/partials/navigation/navigation').controller()
+        },
+        'main-content': {
+          template: require('./views/addressBook.groups/index.html'),
+          controller: require('./views/addressBook.groups/index').controller()
+        }
+      }
+    });
+    $urlRouterProvider.otherwise('root');
+  }];
+}
+
+exports.default = appRoutes;
+},{"angular":"node_modules/angular/index.js","./views/partials/header/header.html":"app/views/partials/header/header.html","./views/partials/header/header":"app/views/partials/header/header.ts","./views/home/home.html":"app/views/home/home.html","./views/home/home":"app/views/home/home.ts","./views/partials/footer/footer.html":"app/views/partials/footer/footer.html","./views/partials/footer/footer":"app/views/partials/footer/footer.ts","./views/user.login/index.html":"app/views/user.login/index.html","./views/user.login/index":"app/views/user.login/index.ts","./views/user.register/index.html":"app/views/user.register/index.html","./views/user.register/index":"app/views/user.register/index.ts","./views/partials/navigation/navigation.html":"app/views/partials/navigation/navigation.html","./views/partials/navigation/navigation":"app/views/partials/navigation/navigation.ts","./views/addressBook.contacts/index.html":"app/views/addressBook.contacts/index.html","./views/addressBook.contacts/index":"app/views/addressBook.contacts/index.ts","./views/addressBook.groups/index.html":"app/views/addressBook.groups/index.html","./views/addressBook.groups/index":"app/views/addressBook.groups/index.ts"}],"app/services/dao.address.book.service.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function daoAddressBook() {
+  return ['$http', '$parse', '$stateParams', 'localStorageService', function ($http, $parse, $stateParams, localStorageService) {
+    var dao = {};
+    var zpriv = {};
+
+    zpriv.getUrl = function (type, context) {
+      switch (type) {
+        case 'self':
+          {
+            return "https://frontend-addressbook.herokuapp.com/";
+          }
+          break;
+
+        case 'addressBook':
+          {
+            return "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/";
+          }
+          break;
+
+        default:
+          return null;
+      }
+    };
+
+    dao.get = function (context, data) {
+      var candidate;
+      var url = zpriv.getUrl('addressBook', context);
+      return $http.get(url).then(function (response) {
+        localStorageService.setObject('fuzeAddressBookCandidateData', $parse('data.value')(response));
+        return {
+          success: true,
+          data: ((response || {}).data || {}).value
+        };
+      }).catch(function (error) {
+        if (angular.isObject(candidate = localStorageService.getObject('fuzeAddressBookCandidateData'))) {
+          return {
+            success: true,
+            data: candidate
+          };
+        } else {
+          return {
+            success: false,
+            error: error
+          };
+        }
+      });
+    };
+
+    dao.create = function (context, data) {
+      var url = zpriv.getUrl('addressBook', context);
+      return $http.post(url, data).then(function (response) {
+        return {
+          success: true,
+          data: ((response || {}).data || {}).value
+        };
+      }).catch(function (error) {
+        return {
+          success: false,
+          error: error
+        };
+      });
+    };
+
+    return dao;
+  }];
+}
+
+exports.default = daoAddressBook;
+;
+},{}],"app/services/dao.contacts.service.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function daoContacts() {
+  return ['$http', '$stateParams', '$parse', 'localStorageService', function ($http, $stateParams, $parse, localStorageService) {
+    var dao = {};
+    var zpriv = {};
+
+    zpriv.getUrl = function (context, data) {
+      if (data && data.name) {
+        return "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId + "/contacts/" + data.name;
+      } else {
+        return "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId + "/contacts/";
+      }
+    };
+
+    zpriv.rest2gui = function (data) {};
+
+    dao.get = function (context, data) {
+      var url = zpriv.getUrl(context, data);
+      return $http.get(url).then(function (response) {
+        return {
+          success: true,
+          data: ((response || {}).data || {}).value
+        };
+      }).catch(function (error) {
+        return {
+          success: false,
+          error: error
+        };
+      });
+    }; // Apparently there's no GET to the resource per se
+
+
+    dao.getExtended = function (context) {
+      var data;
+      var url = "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId;
+      return $http.get(url).then(function (response) {
+        localStorageService.setObject('fuzeAddressBookContactsData', $parse('data.value.contacts')(response));
+        return {
+          success: true,
+          data: $parse('data.value.contacts')(response)
+        };
+      }).catch(function (error) {
+        if (angular.isObject(data = localStorageService.getObject('fuzeAddressBookContactsData'))) {
+          return {
+            success: true,
+            data: data
+          };
+        } else {
+          return {
+            success: false,
+            error: error
+          };
+        }
+      });
+    };
+
+    dao.create = function (context, data) {
+      var url = "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId + "/contacts/";
+      return $http.post(url, data).then(function (response) {
+        return {
+          success: true,
+          data: ((response || {}).data || {}).value
+        };
+      }).catch(function (error) {
+        return {
+          success: false,
+          error: error
+        };
+      });
+    };
+
+    dao.config = function (context, data) {
+      var url = zpriv.getUrl(context, data);
+      return $http.put(url, data).then(function (response) {
+        return {
+          success: true,
+          data: ((response || {}).data || {}).value
+        };
+      }).catch(function (error) {
+        return {
+          success: false,
+          error: error
+        };
+      });
+    };
+
+    dao.remove = function (context, data) {
+      var url = zpriv.getUrl(context, data);
+      return $http.delete(url, data).then(function (response) {
+        return {
+          success: true,
+          data: ((response || {}).data || {}).value
+        };
+      }).catch(function (error) {
+        return {
+          success: false,
+          error: error
+        };
+      });
+    };
+
+    return dao;
+  }];
+}
+
+exports.default = daoContacts;
+;
+},{}],"app/services/dao.groups.service.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function daoGroups() {
+  return ['$http', '$stateParams', '$parse', 'localStorageService', function ($http, $stateParams, $parse, localStorageService) {
+    var dao = {};
+    var zpriv = {};
+
+    zpriv.getUrl = function (context, data) {
+      if (data && data.id) {
+        return "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId + "/groups/" + data.id;
+      } else {
+        return "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId + "/groups/";
+      }
+    };
+
+    zpriv.rest2gui = function (data) {};
+
+    dao.get = function (context, data) {
+      var url = zpriv.getUrl(context, data);
+      return $http.get(url).then(function (response) {
+        return {
+          success: true,
+          data: ((response || {}).data || {}).value
+        };
+      }).catch(function (error) {
+        return {
+          success: false,
+          error: error
+        };
+      });
+    }; // Apparently there's no GET to the resource per se
+
+
+    dao.getExtended = function (context) {
+      var data;
+      var url = "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId;
+      return $http.get(url).then(function (response) {
+        localStorageService.setObject('fuzeAddressBookGroupsData', $parse('data.value.groups')(response));
+        return {
+          success: true,
+          data: $parse('data.value.groups')(response)
+        };
+      }).catch(function (error) {
+        if (angular.isObject(data = localStorageService.getObject('fuzeAddressBookGroupsData'))) {
+          return {
+            success: true,
+            data: data
+          };
+        } else {
+          return {
+            success: false,
+            error: error
+          };
+        }
+      });
+    };
+
+    dao.create = function (context, data) {
+      var url = "https://frontend-addressbook.herokuapp.com/" + context.candidate + "/" + context.addressBookId + "/groups/";
+      return $http.post(url, data).then(function (response) {
+        return {
+          success: true,
+          data: ((response || {}).data || {}).value
+        };
+      }).catch(function (error) {
+        return {
+          success: false,
+          error: error
+        };
+      });
+    };
+
+    dao.config = function (context, data) {
+      var url = zpriv.getUrl(context, data);
+      return $http.put(url, data).then(function (response) {
+        return {
+          success: true,
+          data: ((response || {}).data || {}).value
+        };
+      }).catch(function (error) {
+        return {
+          success: false,
+          error: error
+        };
+      });
+    };
+
+    dao.remove = function (context, data) {
+      var url = zpriv.getUrl(context, data);
+      return $http.delete(url, data).then(function (response) {
+        return {
+          success: true,
+          data: ((response || {}).data || {}).value
+        };
+      }).catch(function (error) {
+        return {
+          success: false,
+          error: error
+        };
+      });
+    };
+
+    return dao;
+  }];
+}
+
+exports.default = daoGroups;
+;
+},{}],"app/services/local.storage.service.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function LocalStorage() {
+  return ['$window', function ($window) {
+    return {
+      set: function set(key, value) {
+        $window.localStorage[key] = value;
+      },
+      get: function get(key, defaultValue) {
+        return $window.localStorage[key] || defaultValue;
+      },
+      setObject: function setObject(key, value) {
+        $window.localStorage[key] = JSON.stringify(value);
+      },
+      getObject: function getObject(key) {
+        return JSON.parse($window.localStorage[key] || '{}');
+      }
+    };
+  }];
+}
+
+exports.default = LocalStorage;
+;
+},{}],"app/services/modal.address.book.contacts.config.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function modalAddressBookContactsConfig() {
+  return ['$uibModal', function ($uibModal) {
+    var ctrl = ['$scope', '$q', '$state', '$stateParams', 'daoContactsService', 'daoGroupsService', 'data', 'toaster', function ($scope, $q, $state, $stateParams, daoContactsService, daoGroupsService, data, toaster) {
+      var key = 'myController';
+      var zpriv = {};
+
+      var myscope = $scope[key] = function ($scope) {
+        return {
+          loadInProgress: false,
+          data: angular.copy(data) || {},
+          isInEdition: angular.isObject(data),
+          isInCreation: !angular.isObject(data)
+        };
+      }($scope);
+
+      (function () {
+        myscope.loadInProgress = true;
+        $q.resolve(null).then(function () {
+          return daoGroupsService.getExtended(zpriv.getContext());
+        }).then(function (response) {
+          myscope.groupsList = response.data;
+        }).finally(function () {
+          myscope.loadInProgress = false;
+        });
+      })();
+
+      myscope.actionConfigContact = function () {
+        var promise = null;
+        myscope.loadInProgress = true;
+
+        if (myscope.isInCreation) {
+          promise = daoContactsService.create(zpriv.getContext(), myscope.data);
+        } else {
+          promise = daoContactsService.config(zpriv.getContext(), myscope.data);
+        }
+
+        return promise.then(function (response) {
+          if (response.success == true) {
+            if (myscope.isInCreation) {
+              toaster.success("Success", "Contact successfully created");
+            } else {
+              toaster.success("Success", "Contact successfully updated");
+            }
+
+            return $scope.$close(myscope.data);
+          } else {
+            toaster.error("Error", "It was not possible to configure the contact. Please try again");
+          }
+        }).finally(function () {
+          myscope.loadInProgress = false;
+        });
+      };
+
+      myscope.getGroups = function () {
+        return myscope.groupsList;
+      };
+
+      myscope.createNewContact = function () {
+        $scope.$dismiss();
+        $state.go('root.addressBook.groups');
+      };
+
+      zpriv.getContext = function () {
+        return {
+          candidate: $stateParams.candidate,
+          addressBookId: $stateParams.addressBookId
+        };
+      };
+    }];
+    return function (data) {
+      return $uibModal.open({
+        controller: ctrl,
+        backdrop: 'static',
+        template: require('./modal.address.book.contacts.config.tpl.html'),
+        resolve: {
+          data: [function () {
+            return data;
+          }] //templateUrl: require('modal.address.book.contacts.config.tpl.html')
+
+        }
+      }).result;
+    };
+  }];
+}
+
+exports.default = modalAddressBookContactsConfig;
+;
+},{"./modal.address.book.contacts.config.tpl.html":"app/services/modal.address.book.contacts.config.tpl.html"}],"app/services/modal.address.book.contacts.delete.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function modalAddressBookContactsDelete() {
+  return ['$uibModal', function ($uibModal) {
+    var ctrl = ['$scope', '$q', '$stateParams', 'daoContactsService', 'daoGroupsService', 'data', 'toaster', function ($scope, $q, $stateParams, daoContactsService, daoGroupsService, data, toaster) {
+      var key = 'myController';
+      var zpriv = {};
+
+      var myscope = $scope[key] = function ($scope) {
+        return {
+          loadInProgress: false,
+          data: angular.copy(data) || {}
+        };
+      }($scope);
+
+      myscope.actionDeleteContact = function () {
+        myscope.loadInProgress = true;
+        return daoContactsService.remove(zpriv.getContext(), myscope.data).then(function (response) {
+          if (response.success == true) {
+            toaster.success("Success", "Contact successfully deleted");
+            return $scope.$close(myscope.data);
+          } else {
+            toaster.error("Error", "It was not possible to delete the contact. Please try again");
+          }
+        }).finally(function () {
+          myscope.loadInProgress = false;
+        });
+      };
+
+      zpriv.getContext = function () {
+        return {
+          candidate: $stateParams.candidate,
+          addressBookId: $stateParams.addressBookId
+        };
+      };
+    }];
+    return function (data) {
+      return $uibModal.open({
+        controller: ctrl,
+        backdrop: 'static',
+        template: require('./modal.address.book.contacts.delete.tpl.html'),
+        resolve: {
+          data: [function () {
+            return data;
+          }] //templateUrl: require('modal.address.book.contacts.config.tpl.html')
+
+        }
+      }).result;
+    };
+  }];
+}
+
+exports.default = modalAddressBookContactsDelete;
+;
+},{"./modal.address.book.contacts.delete.tpl.html":"app/services/modal.address.book.contacts.delete.tpl.html"}],"app/services/modal.address.book.groups.config.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function modalAddressBookGroupsConfig() {
+  return ['$uibModal', function ($uibModal) {
+    var ctrl = ['$scope', '$q', '$stateParams', 'daoGroupsService', 'data', 'toaster', function ($scope, $q, $stateParams, daoGroupsService, data, toaster) {
+      var key = 'myController';
+      var zpriv = {};
+
+      var myscope = $scope[key] = function ($scope) {
+        return {
+          loadInProgress: false,
+          data: angular.copy(data) || {},
+          isInEdition: angular.isObject(data),
+          isInCreation: !angular.isObject(data)
+        };
+      }($scope);
+
+      (function () {
+        myscope.loadInProgress = true;
+        $q.resolve(null).then(function () {
+          return daoGroupsService.getExtended(zpriv.getContext());
+        }).then(function (response) {
+          myscope.groupsList = response.data;
+
+          if (myscope.isInCreation) {
+            myscope.data.id = myscope.groupsList.length + 1;
+          }
+        }).finally(function () {
+          myscope.loadInProgress = false;
+        });
+      })();
+
+      myscope.actionConfigGroup = function () {
+        var promise = null;
+        myscope.loadInProgress = true;
+
+        if (myscope.isInCreation) {
+          promise = daoGroupsService.create(zpriv.getContext(), myscope.data);
+        } else {
+          promise = daoGroupsService.config(zpriv.getContext(), myscope.data);
+        }
+
+        return promise.then(function (response) {
+          if (response.success == true) {
+            if (myscope.isInCreation) {
+              toaster.success("Success", "Group successfully created");
+            } else {
+              toaster.success("Success", "Group successfully updated");
+            }
+
+            return $scope.$close(myscope.data);
+          } else {
+            toaster.error("Error", "It was not possible to configure the contact group. Please try again");
+          }
+        }).finally(function () {
+          myscope.loadInProgress = false;
+        });
+      };
+
+      zpriv.getContext = function () {
+        return {
+          candidate: $stateParams.candidate,
+          addressBookId: $stateParams.addressBookId
+        };
+      };
+    }];
+    return function (data) {
+      return $uibModal.open({
+        controller: ctrl,
+        backdrop: 'static',
+        template: require('./modal.address.book.groups.config.tpl.html'),
+        resolve: {
+          data: [function () {
+            return data;
+          }]
+        }
+      }).result;
+    };
+  }];
+}
+
+exports.default = modalAddressBookGroupsConfig;
+;
+},{"./modal.address.book.groups.config.tpl.html":"app/services/modal.address.book.groups.config.tpl.html"}],"app/services/modal.address.book.groups.delete.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function modalAddressBookContactsDelete() {
+  return ['$uibModal', function ($uibModal) {
+    var ctrl = ['$scope', '$q', '$stateParams', 'daoGroupsService', 'data', 'toaster', function ($scope, $q, $stateParams, daoGroupsService, data, toaster) {
+      var key = 'myController';
+      var zpriv = {};
+
+      var myscope = $scope[key] = function ($scope) {
+        return {
+          loadInProgress: false,
+          data: angular.copy(data) || {}
+        };
+      }($scope);
+
+      myscope.actionDeleteGroup = function () {
+        myscope.loadInProgress = true;
+        return daoGroupsService.remove(zpriv.getContext(), myscope.data).then(function (response) {
+          if (response.success == true) {
+            toaster.success("Success", "Group successfully deleted");
+            return $scope.$close(myscope.data);
+          } else {
+            toaster.error("Error", "It was not possible to delete the contact group. Please try again");
+          }
+        }).finally(function () {
+          myscope.loadInProgress = false;
+        });
+      };
+
+      zpriv.getContext = function () {
+        return {
+          candidate: $stateParams.candidate,
+          addressBookId: $stateParams.addressBookId
+        };
+      };
+    }];
+    return function (data) {
+      return $uibModal.open({
+        controller: ctrl,
+        backdrop: 'static',
+        template: require('./modal.address.book.groups.delete.tpl.html'),
+        resolve: {
+          data: [function () {
+            return data;
+          }]
+        }
+      }).result;
+    };
+  }];
+}
+
+exports.default = modalAddressBookContactsDelete;
+;
+},{"./modal.address.book.groups.delete.tpl.html":"app/services/modal.address.book.groups.delete.tpl.html"}],"app/services/auth.service.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function Auth() {
+  return ['$cookies', '$stateParams', function ($cookies, $stateParams) {
+    var zpriv = {};
+    var service = {};
+
+    service.getUserAddressBookId = function () {
+      return $cookies.get('userAddressBookId');
+    };
+
+    service.setUserAddressBook = function (userAddressBook) {
+      return $cookies.put('userAddressBookId', userAddressBook);
+    };
+
+    service.unsetUserAddressBookId = function () {
+      return $cookies.remove('userAddressBookId');
+    };
+
+    return service;
+  }];
+}
+
+exports.default = Auth;
+;
+},{}],"app/components/loading.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function loadBlockerDirective() {
+  return ['$parse', '$compile', function ($parse, $compile) {
+    var fnTemplate = $compile('' + '<div class="fuze-address-book-loading-blocker-container" data-ng-show="loadInProgress">' + '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>' + '</div>');
+    return {
+      compile: function compile(tElement, tAttrs) {
+        var fnSettings = $parse(tAttrs.fuzeAddressBookLoadingBlocker);
+        return {
+          post: function post($scope, element, attrs, ctrls) {
+            var myscope = $scope.$new(true);
+            myscope.loadInProgress = fnSettings($scope);
+            fnTemplate(myscope, function (clone) {
+              element.append(clone);
+            });
+            $scope.$on('$destroy', function () {
+              myscope.$destroy();
+            });
+            $scope.$watch(function () {
+              return fnSettings($scope);
+            }, function (newValue) {
+              myscope.loadInProgress = newValue;
+            });
+          }
+        };
+      }
+    };
+  }];
+}
+
+exports.default = loadBlockerDirective;
+;
+},{}],"node_modules/@fortawesome/fontawesome-free-webfonts/css/fontawesome.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"./../webfonts/fa-solid-900.eot":[["fa-solid-900.31934b57.eot","node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.eot"],"node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.eot"],"./../webfonts/fa-solid-900.woff2":[["fa-solid-900.38330afc.woff2","node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.woff2"],"node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.woff2"],"./../webfonts/fa-solid-900.woff":[["fa-solid-900.d2b06e6d.woff","node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.woff"],"node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.woff"],"./../webfonts/fa-solid-900.ttf":[["fa-solid-900.092036b3.ttf","node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.ttf"],"node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.ttf"],"./../webfonts/fa-solid-900.svg":[["fa-solid-900.6dcf2092.svg","node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.svg"],"node_modules/@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.svg"],"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"node_modules/angularjs-toaster/toaster.css":[function(require,module,exports) {
+
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"assets/css/main.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"./../images/bg_full_landing_page.png":[["bg_full_landing_page.a8824d78.png","assets/images/bg_full_landing_page.png"],"assets/images/bg_full_landing_page.png"],"./../images/logo.svg":[["logo.d714b74f.svg","assets/images/logo.svg"],"assets/images/logo.svg"],"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/lib/builtins/css-loader.js"}],"node_modules/angularjs/index.js":[function(require,module,exports) {
 require('angular');
 module.exports = window.angular;
 
@@ -66225,7 +66232,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49355" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54776" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

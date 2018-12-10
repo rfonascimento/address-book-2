@@ -3,15 +3,15 @@ export default function daoAddressBook(){
       , '$parse'
       , '$stateParams'
       , 'localStorageService'
-   , (($http: $http
-      , $parse
-      , $stateParams: $stateParams
-      , localStorageService: localStorageService
+   , (($http: ng.IHttpService
+      , $parse: ng.IParseService
+      , $stateParams: ng.ui.IStateParamsService
+      , localStorageService: any
    ):object => {
-      const dao: object = {};
-      const zpriv: object = {};
+      const dao: any = {};
+      const zpriv: any = {};
 
-      zpriv.getUrl = function(type: string, context: object){
+      zpriv.getUrl = function(type: string, context: any){
          switch(type){
             case 'self':         { return `https://frontend-addressbook.herokuapp.com/` } break;
             case 'addressBook':  { return `https://frontend-addressbook.herokuapp.com/${context.candidate}/` } break;
@@ -19,8 +19,8 @@ export default function daoAddressBook(){
          }
       };
 
-      dao.get = ((context:object, data: object):promise =>{
-         const candidate;
+      dao.get = ((context: Object, data: Object): ng.IPromise =>{
+         let candidate;
          const url = zpriv.getUrl('addressBook', context);
          return $http.get(url).then((response)=>{
             localStorageService.setObject('fuzeAddressBookCandidateData', $parse('data.value')(response));
@@ -34,7 +34,7 @@ export default function daoAddressBook(){
          });
       });
 
-      dao.create = ((context: object, data: object):promise =>{
+      dao.create = ((context: Object, data: Object): ng.IPromise =>{
          const url = zpriv.getUrl('addressBook', context);
          return $http.post(url, data).then((response)=>{
             return { success: true, data: ((response || {}).data || {}).value };

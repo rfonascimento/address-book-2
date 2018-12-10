@@ -6,12 +6,12 @@ export function controller(){
       , 'toaster'
       , 'daoAddressBookService'
       , 'authService'
-   , function($scope:$scope
-      , $state: $state
-      , $stateParams: $stateParams
-      , toaster: toaster
-      , daoAddressBookService:daoAddressBookService
-      , authService
+   , function($scope: ng.IScope
+      , $state: ng.ui.IStateService
+      , $stateParams: ng.ui.IStateParamsService
+      , toaster: any
+      , daoAddressBookService: any
+      , authService: any
    ){
       const key = 'myController';
       const myscope = $scope[key] = (($scope)=>{return{

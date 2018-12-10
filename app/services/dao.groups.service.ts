@@ -3,10 +3,10 @@ export default function daoGroups(){
       , '$stateParams'
       , '$parse'
       , 'localStorageService'
-   , (($http: $http
-      , $stateParams: $stateParams
-      , $parse:$parse
-      , localStorageService:localStorageService
+   , (($http: ng.IHttpService
+      , $stateParams: ng.ui.IStateParamsService
+      , $parse: ng.IParseService
+      , localStorageService: any
    ):object => {
       const dao: object = {};
       const zpriv: object = {};

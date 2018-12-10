@@ -8,12 +8,12 @@ export default function modalAddressBookContactsDelete(){
          , 'daoGroupsService'
          , 'data'
          , 'toaster'
-      , ($scope:$scope
-         , $q:$q
-         , $stateParams:$stateParams
-         , daoGroupsService: object
-         , data:object
-         , toaster:toaster
+      , ($scope: ng.IScope
+         , $q: ng.IQService
+         , $stateParams: ng.ui.IStateParamsService
+         , daoGroupsService: any
+         , data: any
+         , toaster: any
       )=>{
          const key = 'myController';
          const zpriv = {};
