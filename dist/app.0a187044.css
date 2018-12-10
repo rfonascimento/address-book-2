@@ -13,7 +13,6 @@ header {
 header .dropdown {
   top: 40%;
   float: right;
-  margin-right: 50px;
 }
 header .dropdown a {
   color: #6a348b;
@@ -30,6 +29,15 @@ header #fuze-address-book-header-candidate-dropdown {
 }@media (min-width: 768px) {
   .main-container.login {
     padding: 4em;
+  }
+}
+@media (max-width: 768px) {
+  .slogan h3 {
+    font-size: 3.5rem;
+  }
+
+  .slogan h5 {
+    font-size: 2rem;
   }
 }
 .main-container.login {

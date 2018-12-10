@@ -4,6 +4,15 @@
    }
 }
 
+@media (max-width: 768px) {
+   .slogan h3 {
+      font-size: 3.5rem;
+   }
+   .slogan h5 {
+      font-size: 2rem;
+   }
+}
+
 .main-container.login {
    padding: 2rem;
 }
