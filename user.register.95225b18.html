@@ -1,18 +1,18 @@
-<div class="main-container register" data-fuze-address-book-loading-blocker="myController.loadInProgress">
-   <div class="row">
-      <div class="col"></div>
-      <div class="col-md-3">
-         <form name="myController.form">
-            <div class="form-group">
-               <input type="text" class="form-control" id="fuze-address-book-user-username" data-ng-model="myController.data.username" aria-describedby="username" placeholder="username" required="">
-            </div>
-            <div class="form-group">
-               <input type="password" class="form-control" id="fuze-address-book-user-password" data-ng-model="myController.data.password" aria-describedby="password" placeholder="password" required="">
-            </div>
-            <button type="submit" class="btn btn-primary full-width" data-ng-click="myController.actionCreate(myController.data)" data-ng-disabled="myController.form.$invalid">Register</button>
-         </form>
-         <p class="text-center text--white text--login">Have an account? <a data-ui-sref="root.user.login">Sign in</a></p>
+<div class="full-width" data-fuze-address-book-loading-blocker="myController.loadInProgress">
+   <div class="main-container register container">
+      <div class="row">
+         <div class="col-md-4 offset-md-4">
+            <form name="myController.form">
+               <div class="form-group">
+                  <input type="text" class="form-control" id="fuze-address-book-user-username" data-ng-model="myController.data.username" aria-describedby="username" placeholder="username" required="">
+               </div>
+               <div class="form-group">
+                  <input type="password" class="form-control" id="fuze-address-book-user-password" data-ng-model="myController.data.password" aria-describedby="password" placeholder="password" required="">
+               </div>
+               <button type="submit" class="btn btn-primary full-width" data-ng-click="myController.actionCreate(myController.data)" data-ng-disabled="myController.form.$invalid">Register</button>
+            </form>
+            <p class="text-center text--white text--login">Have an account? <a data-ui-sref="root.user.login">Sign in</a></p>
+         </div>
       </div>
-      <div class="col"></div>
    </div>
 </div>

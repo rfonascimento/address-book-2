@@ -27,8 +27,13 @@ header .dropdown .dropdown-menu {
 }
 header #fuze-address-book-header-candidate-dropdown {
   color: white;
-}.main-container.login {
-  padding: 4em;
+}@media (min-width: 768px) {
+  .main-container.login {
+    padding: 4em;
+  }
+}
+.main-container.login {
+  padding: 2rem;
 }
 
 .text--create-new-account {
@@ -49,15 +54,16 @@ header #fuze-address-book-header-candidate-dropdown {
   padding: 2rem;
 }
 
-.slogan h3 {
-  font-size: 3rem;
-}
-
-.slogan h3, .slogan h4 {
+.slogan h5, .slogan h3 {
   color: white;
   font-weight: 300;
-}.main-container.register {
-  padding: 4em;
+}@media (min-width: 768px) {
+  .main-container.register {
+    padding: 4em;
+  }
+}
+.main-container.register {
+  padding: 2rem;
 }
 
 .text--login {
